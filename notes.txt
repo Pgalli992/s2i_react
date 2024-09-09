@@ -1,0 +1,4 @@
+- reusability of components.
+- using children props to take app.jsx three as cleen as possible.
+
+- perttier - automatic sorting of tailwind classes.

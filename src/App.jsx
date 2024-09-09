@@ -1,9 +1,16 @@
-import "./App.css";
+import Header from "./ui/Header";
+import Logo from "./ui/Logo";
+import NumResults from "./ui/NumResults";
+import SearchBar from "./ui/SearchBar";
 
 function App() {
   return (
     <div>
-      <h1 className="text-3xl font-bold text-green-600">Hello World!</h1>
+      <Header>
+        <Logo />
+        <SearchBar placeholder="Search your vegan recipe..." />
+        <NumResults />
+      </Header>
     </div>
   );
 }
