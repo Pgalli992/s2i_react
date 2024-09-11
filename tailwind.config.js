@@ -15,17 +15,6 @@ export default {
           800: "#74b816",
           900: "#5c940d",
         },
-        secondary: {
-          100: "#fff9db",
-          200: "#fff3bf",
-          300: "#ffec99",
-          400: "#ffe066",
-          500: "#ffd43b",
-          600: "#fcc419",
-          700: "#fab005",
-          800: "#f59f00",
-          900: "#e67700",
-        },
       },
 
       gridTemplateColumns: {

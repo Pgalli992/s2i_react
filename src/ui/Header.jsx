@@ -1,11 +1,13 @@
-// eslint-disable-next-line react/prop-types
-function Header({ children }) {
+import Logo from "./Logo";
+import SearchBar from "./SearchBar";
+import NumResults from "./NumResults";
+function Header() {
   return (
-    <div>
-      <header className="bg-secondary-500 grid-cols-header grid p-5">
-        {children}
-      </header>
-    </div>
+    <header className="grid grid-cols-header items-center justify-center bg-yellow-400 p-5">
+      <Logo />
+      <SearchBar placeholder="Search your vegan recipe..." />
+      <NumResults />
+    </header>
   );
 }
 
