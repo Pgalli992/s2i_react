@@ -1,6 +1,6 @@
 function NumResults() {
   return (
-    <div>
+    <div className="text-end">
       <span>NumResults</span>
     </div>
   );

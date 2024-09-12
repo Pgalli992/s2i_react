@@ -1,7 +1,7 @@
 function Sidebar() {
   return (
-    <div>
-      <aside></aside>
+    <div className="h-screen overflow-y-scroll shadow-xl">
+      <aside>Sidebar</aside>
     </div>
   );
 }

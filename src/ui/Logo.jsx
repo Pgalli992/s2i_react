@@ -1,9 +1,6 @@
+import logo from "../assets/logo.png";
 function Logo() {
-  return (
-    <div>
-      <span>Logo</span>
-    </div>
-  );
+  return <img src={logo} className="aspect-square w-12" />;
 }
 
 export default Logo;

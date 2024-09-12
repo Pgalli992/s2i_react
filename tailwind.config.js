@@ -5,16 +5,20 @@ export default {
     extend: {
       colors: {
         primary: {
-          100: "#f4fce3",
-          200: "#e9fac8",
-          300: "#d8f5a2",
-          400: "#c0eb75",
-          500: "#a9e34b",
-          600: "#94d82d",
-          700: "#82c91e",
-          800: "#74b816",
-          900: "#5c940d",
+          100: "#F7FBF7",
+          200: "#E7F2E6",
+          300: "#D7EAD5",
+          400: "#C7E2C4",
+          500: "#B7D9B3",
+          600: "#AFD5AB",
+          700: "#8CAA89",
+          800: "#698067",
+          900: "#465544",
         },
+      },
+
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
       },
 
       gridTemplateColumns: {
