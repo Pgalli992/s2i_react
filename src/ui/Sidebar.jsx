@@ -1,8 +1,24 @@
+import RecipePrew from "./RecipePrew";
+
 function Sidebar() {
   return (
-    <div className="h-screen overflow-y-scroll shadow-xl">
-      <aside>Sidebar</aside>
-    </div>
+    <aside className="flex h-screen flex-col gap-3 overflow-y-scroll p-3 shadow-xl">
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+      <RecipePrew />
+    </aside>
   );
 }
 

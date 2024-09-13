@@ -4,9 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import NumResults from "./ui/NumResults";
 // import SearchBar from "./ui/SearchBar";
 import AppLayout from "./ui/AppLayout";
-import Error from "./ui/Error";
-import Home from "./ui/Home";
-import Recipes from "./ui/Recipes";
+import Error from "./pages/Error";
+import Home from "./pages/Home";
+import SearchRecipes from "./pages/SearchRecipes";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/recipes",
-        element: <Recipes />,
+        path: "/search_recipes",
+        element: <SearchRecipes />,
       },
     ],
   },
