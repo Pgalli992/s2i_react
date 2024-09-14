@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
-import SearchRecipes from "./pages/SearchRecipes";
+import SearchRecipes, { loader as recipesLoader } from "./pages/SearchRecipes";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/search_recipes",
         element: <SearchRecipes />,
+        loader: recipesLoader,
       },
     ],
   },
