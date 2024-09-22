@@ -22,7 +22,7 @@ export default {
       },
 
       gridTemplateColumns: {
-        header: "1fr 2fr 1fr",
+        header: "1fr 1fr 1fr",
       },
     },
     plugins: [],

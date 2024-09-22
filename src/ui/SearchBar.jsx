@@ -22,12 +22,12 @@ function SearchBar({ placeholder = "" }) {
       <input
         type="text"
         placeholder={placeholder}
-        className="text-md w-28 rounded-full bg-primary-400 px-4 py-2 text-primary-900 caret-primary-900 shadow-sm outline-none transition-all duration-300 placeholder:text-primary-700 focus:scale-105 focus:placeholder-transparent focus:shadow-md sm:h-10 sm:w-3/4"
+        className="text-md relative w-full rounded-full bg-primary-400 px-4 py-2 pl-12 text-primary-900 caret-primary-900 shadow-sm outline-none transition-all duration-300 placeholder:text-primary-700 focus:scale-105 focus:placeholder-transparent focus:shadow-md sm:h-10"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button className="rounded-full bg-primary-900 px-4 py-2 text-primary-200 duration-300 group-focus-within:translate-x-1/4">
-        Search...
+      <button className="absolute left-2 aspect-square w-9 rounded-full bg-transparent text-primary-700 transition-all duration-300 group-focus-within:left-[100%] group-focus-within:-translate-x-full group-focus-within:scale-105 group-focus-within:bg-primary-400 group-focus-within:text-primary-900">
+        &rarr;
       </button>
     </form>
   );
