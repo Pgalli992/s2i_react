@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { getRecipeByQuery } from "../services/apiRecipes";
-import Button from "./Button";
-
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
   const [query, setQuery] = useState("");
