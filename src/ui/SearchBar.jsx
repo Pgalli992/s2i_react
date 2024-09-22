@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { getRecipeByQuery } from "../services/apiRecipes";
+import Button from "./Button";
 
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
@@ -16,7 +17,10 @@ function SearchBar({ placeholder = "" }) {
   }
 
   return (
-    <form className="flex justify-center" onSubmit={handleSubmit}>
+    <form
+      className="group relative flex items-center justify-center gap-1"
+      onSubmit={handleSubmit}
+    >
       <input
         type="text"
         placeholder={placeholder}
@@ -24,6 +28,9 @@ function SearchBar({ placeholder = "" }) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
+      <button className="rounded-full bg-primary-900 px-4 py-2 text-primary-200 duration-300 group-focus-within:translate-x-1/4">
+        Search...
+      </button>
     </form>
   );
 }
