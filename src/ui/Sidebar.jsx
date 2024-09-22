@@ -1,23 +1,11 @@
-import RecipePrew from "./RecipePrew";
+import NumResults from "./NumResults";
+import RecipePrew from "./RecipePreview";
 
 function Sidebar() {
   return (
     <aside className="flex h-screen flex-col gap-3 overflow-y-scroll p-3 shadow-xl">
       <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
-      <RecipePrew />
+      <NumResults />
     </aside>
   );
 }

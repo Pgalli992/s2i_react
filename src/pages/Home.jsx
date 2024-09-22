@@ -1,11 +1,7 @@
-import { useGoToSearch } from "../hooks/useGoToSearch";
-import Button from "../ui/Button";
 import Logo from "../ui/Logo";
 function Home() {
-  const goToSearch = useGoToSearch();
-
   return (
-    <div className="col-span-full mx-auto flex h-screen w-2/5 -translate-y-40 flex-col items-center justify-center">
+    <div className="col-span-full mx-auto flex w-2/5 -translate-y-40 flex-col items-center justify-center gap-3">
       <Logo />
       <div className="text-center">
         <h1 className="text-3xl font-bold text-primary-800">
@@ -18,9 +14,7 @@ function Home() {
           bene al corpo e al pianeta!
         </h2>
       </div>
-      <div className="mt-6">
-        <Button text="Inizia a cercare..." onClick={goToSearch} />
-      </div>
+      <div className="mt-6"></div>
     </div>
   );
 }

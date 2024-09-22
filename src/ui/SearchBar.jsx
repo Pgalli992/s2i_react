@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { getRecipeByQuery } from "../services/apiRecipes";
 
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
@@ -9,7 +10,8 @@ function SearchBar({ placeholder = "" }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!query) return;
-    navigate(`search_recipes/${query}`);
+    navigate(`search_recipes`);
+    getRecipeByQuery(query);
     setQuery("");
   }
 
