@@ -1,7 +1,7 @@
 import Logo from "../ui/Logo";
 function Home() {
   return (
-    <div className="col-span-full mx-auto flex w-2/5 -translate-y-40 flex-col items-center justify-center gap-3">
+    <div className="col-span-full mx-auto flex w-2/5 flex-col items-center gap-3 pt-[15vh]">
       <Logo />
       <div className="text-center">
         <h1 className="text-3xl font-bold text-primary-800">
