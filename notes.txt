@@ -1,4 +1,10 @@
-- reusability of components.
-- using children props to take app.jsx three as cleen as possible.
+Type
+- One Pace Application
 
+Best Pracice
+- reusability of components.
+- using {children} props to take app.jsx three as cleen as possible.
+
+
+Tools
 - perttier - automatic sorting of tailwind classes.

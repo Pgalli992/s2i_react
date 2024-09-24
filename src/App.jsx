@@ -1,12 +1,19 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import Header from "./ui/Header";
-// import Logo from "./ui/Logo";
-// import NumResults from "./ui/NumResults";
-// import SearchBar from "./ui/SearchBar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import AppLayout from "./ui/AppLayout";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import SearchRecipes from "./pages/SearchRecipes";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -26,7 +33,12 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <RouterProvider router={router} />;
+    </QueryClientProvider>
+  );
 }
 
 export default App;

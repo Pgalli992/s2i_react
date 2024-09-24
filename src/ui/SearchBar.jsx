@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useNavigate } from "react-router";
 import { getRecipeByQuery } from "../services/apiRecipes";
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import { useState } from "react";
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
   const [query, setQuery] = useState("");
