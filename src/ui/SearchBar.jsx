@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { getRecipeByQuery } from "../services/apiRecipes";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useState } from "react";
+// import { useQuery } from "@tanstack/react-query";
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
   const [query, setQuery] = useState("");
@@ -11,9 +12,21 @@ function SearchBar({ placeholder = "" }) {
     e.preventDefault();
     if (!query) return;
     navigate(`search_recipes`);
-    getRecipeByQuery(query);
+    getRecipeByQuery({ query });
+
     setQuery("");
   }
+
+  // function SearchForRecipe() {
+  //   // eslint-disable-next-line react-hooks/rules-of-hooks
+  //   const x = useQuery({
+  //     queryKey: ["recipe", query],
+  //     queryFn: getRecipeByQuery(query),
+  //   });
+  //   console.log(x);
+
+  //   return <div>Recipe</div>;
+  // }
 
   return (
     <form
