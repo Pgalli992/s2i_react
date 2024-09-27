@@ -3,23 +3,6 @@ const API_URL = "https://api.spoonacular.com/recipes/";
 const dietType = "vegan";
 const numOfResults = 100;
 
-export const initialState = {
-  id: "",
-  title: "",
-  image: "",
-  glutenFree: false,
-  dairyFree: false,
-  sustainable: false,
-  readyInMinutes: "",
-  servings: "",
-  sourceUrl: "",
-  summary: "",
-  extendedIngredients: {
-    id: "",
-    original: "",
-  },
-};
-
 export async function getRecipeByQuery({ query }) {
   const res = await fetch(
     `${API_URL}complexSearch?apiKey=${API_KEYS}&diet=${dietType}&query=${query}&number=${numOfResults}`,
@@ -27,8 +10,6 @@ export async function getRecipeByQuery({ query }) {
   if (!res.ok) throw Error("Failed getting recipes");
 
   const { results } = await res.json();
-  console.log(query);
-  console.log(results);
   return results;
 }
 

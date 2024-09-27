@@ -8,3 +8,5 @@ Best Pracice
 
 Tools
 - perttier - automatic sorting of tailwind classes.
+
+Fetch data in <SearchBar /> component and use the data on <Sidebar /> component.

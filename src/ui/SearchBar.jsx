@@ -1,32 +1,25 @@
 import { useNavigate } from "react-router";
-import { getRecipeByQuery } from "../services/apiRecipes";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useState } from "react";
+import { getRecipeByQuery } from "../services/apiRecipes";
 // import { useQuery } from "@tanstack/react-query";
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
-  const [query, setQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [recipes, setRecipes] = useState([]);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!query) return;
+    if (!searchQuery) return;
     navigate(`search_recipes`);
-    getRecipeByQuery({ query });
+    getRecipeByQuery({ searchQuery });
 
-    setQuery("");
+    console.log(getRecipeByQuery({ searchQuery }));
+
+    setSearchQuery("");
+    setRecipes(data);
   }
-
-  // function SearchForRecipe() {
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //   const x = useQuery({
-  //     queryKey: ["recipe", query],
-  //     queryFn: getRecipeByQuery(query),
-  //   });
-  //   console.log(x);
-
-  //   return <div>Recipe</div>;
-  // }
 
   return (
     <form
