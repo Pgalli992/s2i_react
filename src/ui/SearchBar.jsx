@@ -1,19 +1,19 @@
 import { useNavigate } from "react-router";
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import { useDispatch } from "react-redux";
+import { fetchRecipesByQuery } from "../features/recipes/recipeSlice";
 import { useState } from "react";
-import { getRecipeByQuery } from "../services/apiRecipes";
-// import { useQuery } from "@tanstack/react-query";
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [recipes, setRecipes] = useState([]);
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const dispatch = useDispatch();
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!searchQuery) return;
+    dispatch(fetchRecipesByQuery(searchQuery));
     navigate(`search_recipes`);
-    getRecipeByQuery({ searchQuery });
 
     setSearchQuery("");
   }
