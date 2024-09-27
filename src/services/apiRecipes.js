@@ -1,16 +1,21 @@
+import axios from "axios";
+
 const API_KEYS = "f8d2d348135f45feb07327844d99dc9c";
 const API_URL = "https://api.spoonacular.com/recipes/";
 const dietType = "vegan";
 const numOfResults = 100;
 
-export async function getRecipeByQuery({ query }) {
-  const res = await fetch(
-    `${API_URL}complexSearch?apiKey=${API_KEYS}&diet=${dietType}&query=${query}&number=${numOfResults}`,
-  );
-  if (!res.ok) throw Error("Failed getting recipes");
-
-  const { results } = await res.json();
-  return results;
+export async function getRecipeByQuery({ searchQuery }) {
+  try {
+    const res = await axios.get(
+      `${API_URL}complexSearch?apiKey=${API_KEYS}&diet=${dietType}&query=${searchQuery}&number=${numOfResults}`,
+    );
+    const data = await res.data;
+    console.log(searchQuery);
+    console.log(data);
+  } catch (err) {
+    console.error("Failed getting recipes", err);
+  }
 }
 
 export async function getRecipeDatails({ id = "" }) {
