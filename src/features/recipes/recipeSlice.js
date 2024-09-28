@@ -15,8 +15,7 @@ export const fetchRecipesByQuery = createAsyncThunk(
     if (!res.ok) throw new Error("Impossible to fetch data");
 
     const data = await res.json();
-    console.log(searchQuery);
-    console.log(data);
+    console.log(data.results);
     return data;
   },
 );
@@ -34,7 +33,7 @@ export const recipesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) =>
     builder
-      .addCase(fetchRecipesByQuery.pending, (state, action) => {
+      .addCase(fetchRecipesByQuery.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchRecipesByQuery.fulfilled, (state, action) => {
