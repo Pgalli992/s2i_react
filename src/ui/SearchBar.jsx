@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
-import { fetchRecipesByQuery } from "../features/recipes/recipeSlice";
 import { useState } from "react";
+import { fetchRecipesByQuery } from "../services/apiRecipes";
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
   const navigate = useNavigate();

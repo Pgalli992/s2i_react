@@ -1,24 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-const API_KEYS = "f8d2d348135f45feb07327844d99dc9c";
-const API_URL = "https://api.spoonacular.com/recipes/";
-const dietType = "vegan";
-const numOfResults = 100;
-
-export const fetchRecipesByQuery = createAsyncThunk(
-  "recipes/fetchRecipesByQuery",
-  async function (searchQuery) {
-    const res = await fetch(
-      `${API_URL}complexSearch?apiKey=${API_KEYS}&diet=${dietType}&query=${searchQuery}&number=${numOfResults}`,
-    );
-
-    if (!res.ok) throw new Error("Impossible to fetch data");
-
-    const data = await res.json();
-    console.log(data.results);
-    return data;
-  },
-);
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  fetchRecipeById,
+  fetchRecipesByQuery,
+} from "../../services/apiRecipes";
 
 const initialState = {
   status: "idle",
@@ -41,6 +25,15 @@ export const recipesSlice = createSlice({
         state.status = "idle";
       })
       .addCase(fetchRecipesByQuery.rejected, (state, action) => {
+        state.status = "error";
+        state.error = action.error.message;
+      })
+      .addCase(fetchRecipeById.pending, (state) => (state.status = "loading"))
+      .addCase(
+        fetchRecipeById.fulfilled,
+        (state, action) => (state.currentRecipe = action.payload.results),
+      )
+      .addCase(fetchRecipeById.rejected, (state, action) => {
         state.status = "error";
         state.error = action.error.message;
       }),

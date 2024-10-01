@@ -12,3 +12,11 @@ Tools
 Fetch data in <SearchBar /> component and use the data on <Sidebar /> component.
 
 immagine mockup quando non disponibile.
+
+Aggiungere loading spinner
+
+permettere ordinamento risultati (es. ordine alfabetico)
+
+aggiungere le ricette ai preferiti
+
+aggiungere simbolo allergeni
