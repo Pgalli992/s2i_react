@@ -20,3 +20,5 @@ permettere ordinamento risultati (es. ordine alfabetico)
 aggiungere le ricette ai preferiti
 
 aggiungere simbolo allergeni
+
+aggiungere tasto per tornare indietro nella recipe_details.

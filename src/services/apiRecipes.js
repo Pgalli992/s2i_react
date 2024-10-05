@@ -44,12 +44,11 @@ export const fetchRecipesByQuery = createAsyncThunk(
 
 export const fetchRecipeById = createAsyncThunk(
   "recipes/fetchRecipeById",
-  async function (id = "") {
-    const res = await fetch(`${API_URL}/${id}/information?apiKey=${API_KEYS}`);
+  async function (id) {
+    const res = await fetch(`${API_URL}${id}/information?apiKey=${API_KEYS}`);
     if (!res.ok) throw Error("Failed getting recipe details");
 
-    const { data } = await res.json();
-    console.log(data);
+    const data = await res.json();
     return data;
   },
 );

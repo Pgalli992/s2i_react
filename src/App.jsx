@@ -21,6 +21,7 @@ const router = createBrowserRouter([
         path: "/search_recipes",
         element: <SearchRecipes />,
       },
+      { path: "/search_recipes/:recipeId", element: <SearchRecipes /> },
     ],
   },
 ]);

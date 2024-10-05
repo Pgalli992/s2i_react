@@ -28,17 +28,18 @@ export const recipesSlice = createSlice({
         state.status = "error";
         state.error = action.error.message;
       })
-      .addCase(fetchRecipeById.pending, (state) => (state.status = "loading"))
-      .addCase(
-        fetchRecipeById.fulfilled,
-        (state, action) => (state.currentRecipe = action.payload.results),
-      )
+      .addCase(fetchRecipeById.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchRecipeById.fulfilled, (state, action) => {
+        state.currentRecipe = action.payload;
+        state.status = "idle";
+      })
+
       .addCase(fetchRecipeById.rejected, (state, action) => {
         state.status = "error";
         state.error = action.error.message;
       }),
 });
-
-export const { setSearchQuery } = recipesSlice.reducer;
 
 export default recipesSlice.reducer;
