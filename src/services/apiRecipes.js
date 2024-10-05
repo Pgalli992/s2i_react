@@ -49,6 +49,7 @@ export const fetchRecipeById = createAsyncThunk(
     if (!res.ok) throw Error("Failed getting recipe details");
 
     const data = await res.json();
+    console.log(data);
     return data;
   },
 );

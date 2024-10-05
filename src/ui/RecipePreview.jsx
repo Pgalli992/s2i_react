@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import noImg from "../assets/no_img.jpg";
+import noImg from "../assets/img/no_img.jpg";
 import { fetchRecipeById } from "../services/apiRecipes";
 import { useNavigate } from "react-router";
 function RecipePreview({ recipe, onSelectRecipe }) {

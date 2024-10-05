@@ -1,4 +1,4 @@
-import logo from "../assets/logo.png";
+import logo from "../assets/icons/logo.png";
 function Logo() {
   return (
     <a href="/" className="max-w-fit cursor-pointer">
