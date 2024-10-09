@@ -22,18 +22,19 @@ function RecipeBox() {
   if (!currentRecipe) return <></>;
 
   return (
-    <div className="relative flex flex-col items-center gap-6 overflow-y-scroll p-4">
+    <div className="relative flex h-full flex-col items-center gap-6 overflow-y-scroll p-4">
       <h1 className="text-3xl">Il caffè della peppina</h1>
-      <div className="grid h-2/3 w-full grid-cols-[2fr_1fr] py-4">
+      <div className="grid h-2/5 w-full grid-cols-2 py-4">
         <picture className="w-full overflow-hidden">
           <img
             src={noImg}
-            className="aspect-square h-full object-cover object-center"
+            className="aspect-square h-full rounded-md object-cover object-center"
           />
         </picture>
-        <div className="self-center">
-          <ul className="grid list-disc grid-cols-2 gap-x-8 text-lg">
-            {/* {ingredients && ingredients.length > 0 ? (
+        <div className="flex flex-col justify-center">
+          <div className="self-center">
+            <ul className="list-disc gap-x-4 text-wrap text-lg">
+              {/* {ingredients && ingredients.length > 0 ? (
             ingredients.map((ingredient) => (
               <li key={ingredient.id}>
               {ingredient.name}
@@ -42,16 +43,37 @@ function RecipeBox() {
               ) : (
                 <p>No ingredients</p>
                 )} */}
-            <li>pane</li>
-            <li>sale</li>
-            <li>acqua</li>
-            <li>pomodoro</li>
-            <li>cipolla</li>
-            <li>banana</li>
-            <li>latte</li>
-            <li>pepe</li>
-            <li>curcuma</li>
-          </ul>
+              <li>pane</li>
+              <li>sale</li>
+              <li>acqua</li>
+              <li>pomodoro</li>
+              <li>cipolla</li>
+              <li>banana</li>
+              <li>latte</li>
+              <li>pepe</li>
+              <li>curcuma</li>
+            </ul>
+          </div>
+          {
+            <div className="flex w-full justify-around gap-4 text-2xl text-primary-900">
+              <span className="flex aspect-square flex-col items-center justify-center rounded-full">
+                <LuVegan />
+                <p className="text-xs">Vegan</p>
+              </span>
+              <span className="flex aspect-square flex-col items-center justify-center rounded-full">
+                <PiPottedPlant />
+                <p className="text-xs">Vegetarian</p>
+              </span>
+              <span className="flex aspect-square flex-col items-center justify-center rounded-full">
+                <PiGrainsSlash />
+                <p className="text-xs">Gluten-free</p>
+              </span>
+              <span className="flex aspect-square flex-col items-center justify-center rounded-full">
+                <LuMilkOff />
+                <p className="text-xs">Lactos-free</p>
+              </span>
+            </div>
+          }
         </div>
       </div>
       <div className="">
@@ -86,20 +108,3 @@ function RecipeBox() {
 }
 
 export default RecipeBox;
-
-{
-  /* <div className="flex gap-4 text-xl text-red-500">
-<span>
-  <LuVegan />
-</span>
-<span>
-  <PiPottedPlant />
-</span>
-<span>
-  <PiGrainsSlash />
-</span>
-<span>
-  <LuMilkOff />
-</span>
-</div> */
-}
