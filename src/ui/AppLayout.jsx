@@ -4,7 +4,7 @@ import MainContainer from "./MainContainer";
 
 function AppLayout() {
   return (
-    <div className="grid h-screen grid-rows-[auto_1fr] gap-2 overflow-hidden caret-transparent">
+    <div className="grid h-screen grid-rows-[auto_1fr] overflow-hidden caret-transparent">
       {/* {isLoading && <Loader />} */}
 
       <Header />

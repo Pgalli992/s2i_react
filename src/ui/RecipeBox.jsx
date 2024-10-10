@@ -5,6 +5,7 @@ import { LuMilkOff } from "react-icons/lu";
 import { PiGrainsSlash } from "react-icons/pi";
 import { LuVegan } from "react-icons/lu";
 import { PiPottedPlant } from "react-icons/pi";
+import { handleImgError } from "../utils/helpers";
 
 function RecipeBox() {
   const { currentRecipe, status } = useSelector((state) => state.recipe);
@@ -15,6 +16,11 @@ function RecipeBox() {
     image,
     sourceUrl,
     title,
+    vegan,
+    glutenFree,
+    vegetarian,
+    dairyFree,
+    summary,
   } = currentRecipe;
 
   if (status === "loading") return <p>Loading...</p>;
@@ -22,86 +28,62 @@ function RecipeBox() {
   if (!currentRecipe) return <></>;
 
   return (
-    <div className="relative flex h-full flex-col items-center gap-6 overflow-y-scroll p-4">
-      <h1 className="text-3xl">Il caffè della peppina</h1>
-      <div className="grid h-2/5 w-full grid-cols-2 py-4">
-        <picture className="w-full overflow-hidden">
+    <div className="relative mx-8 my-4 flex h-max flex-col items-center gap-4 overflow-hidden rounded-md bg-primary-300 p-8 text-primary-900">
+      <h1 className="text-3xl">{title}</h1>
+      <div className="grid w-full grid-cols-2 gap-6 p-4">
+        <picture className="h-[50vh] w-full">
           <img
-            src={noImg}
-            className="aspect-square h-full rounded-md object-cover object-center"
+            src={image}
+            className="h-full w-full rounded-md object-cover"
+            alt={title}
+            onError={handleImgError}
           />
         </picture>
-        <div className="flex flex-col justify-center">
-          <div className="self-center">
-            <ul className="list-disc gap-x-4 text-wrap text-lg">
-              {/* {ingredients && ingredients.length > 0 ? (
-            ingredients.map((ingredient) => (
-              <li key={ingredient.id}>
-              {ingredient.name}
-              </li>
+        <div className="flex h-full flex-col items-center justify-around p-4">
+          <ul className="gap-x-auto text-md grid w-full list-disc grid-flow-col grid-rows-8 rounded-md bg-primary-200 p-6 pl-12">
+            {ingredients && ingredients.length > 0 ? (
+              ingredients.map((ingredient) => (
+                <li key={ingredient.id}>{ingredient.name}</li>
               ))
-              ) : (
-                <p>No ingredients</p>
-                )} */}
-              <li>pane</li>
-              <li>sale</li>
-              <li>acqua</li>
-              <li>pomodoro</li>
-              <li>cipolla</li>
-              <li>banana</li>
-              <li>latte</li>
-              <li>pepe</li>
-              <li>curcuma</li>
-            </ul>
-          </div>
+            ) : (
+              <p>No ingredients</p>
+            )}
+          </ul>
           {
-            <div className="flex w-full justify-around gap-4 text-2xl text-primary-900">
-              <span className="flex aspect-square flex-col items-center justify-center rounded-full">
-                <LuVegan />
-                <p className="text-xs">Vegan</p>
-              </span>
-              <span className="flex aspect-square flex-col items-center justify-center rounded-full">
-                <PiPottedPlant />
-                <p className="text-xs">Vegetarian</p>
-              </span>
-              <span className="flex aspect-square flex-col items-center justify-center rounded-full">
-                <PiGrainsSlash />
-                <p className="text-xs">Gluten-free</p>
-              </span>
-              <span className="flex aspect-square flex-col items-center justify-center rounded-full">
-                <LuMilkOff />
-                <p className="text-xs">Lactos-free</p>
-              </span>
+            <div className="flex h-min w-full items-end justify-around text-2xl">
+              {vegan && (
+                <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                  <LuVegan />
+                  <p className="text-xs">Vegan</p>
+                </span>
+              )}
+              {vegetarian && (
+                <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                  <PiPottedPlant />
+                  <p className="text-xs">Vegetarian</p>
+                </span>
+              )}
+              {glutenFree && (
+                <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                  <PiGrainsSlash />
+                  <p className="text-xs">Gluten-free</p>
+                </span>
+              )}
+              {dairyFree && (
+                <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                  <LuMilkOff />
+                  <p className="text-xs">Lactos-free</p>
+                </span>
+              )}
             </div>
           }
         </div>
       </div>
-      <div className="">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias
-          porro, beatae quaerat corrupti voluptates error ipsum reprehenderit
-          possimus quas veritatis consequatur sequi voluptatum doloremque eaque
-          sunt ad totam voluptatem laboriosam rem eius dolor blanditiis esse
-          nesciunt! Enim excepturi aspernatur doloribus aliquid beatae libero
-          minima asperiores dolorem voluptas totam vero suscipit omnis
-          doloremque, culpa praesentium dicta, quia tempora pariatur debitis ad
-          assumenda illum esse temporibus! Explicabo quis doloribus ratione
-          placeat molestias qui earum ullam ad, quibusdam dolores iure iste
-          accusamus nobis tempore. In odio provident a numquam hic blanditiis
-          saepe quisquam suscipit architecto sunt laudantium autem impedit totam
-          id ipsam nesciunt eum quibusdam pariatur, omnis minima facere. Nostrum
-          nisi fugit eum ipsa, quo officia explicabo repellendus velit non
-          consequuntur atque ex laboriosam error harum nulla earum suscipit
-          aliquam officiis, eos rem debitis? Voluptates impedit consequuntur
-          minima harum voluptate explicabo optio doloremque eum a repudiandae
-          exercitationem labore eos, odit similique natus. Magni placeat
-          accusamus nihil rerum ipsa, illum facilis debitis? Facilis earum
-          corrupti expedita excepturi placeat odio nulla ad, necessitatibus unde
-          perspiciatis quo voluptatum hic iure enim laudantium doloribus esse
-          neque recusandae qui quia cupiditate ex repudiandae autem! Consectetur
-          qui excepturi provident, deserunt non perspiciatis impedit hic
-          obcaecati ducimus est nisi amet.
-        </p>
+      <div className="p-4">
+        <p
+          className="text-pretty"
+          dangerouslySetInnerHTML={{ __html: summary }}
+        ></p>
       </div>
     </div>
   );

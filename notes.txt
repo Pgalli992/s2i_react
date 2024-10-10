@@ -28,3 +28,5 @@ find bold icon for allergeni
 build a component for allergeni
 
 adjust the list of ingredients
+
+add instructions, cooking time author and link for each recipe

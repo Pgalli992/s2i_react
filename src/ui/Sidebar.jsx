@@ -8,8 +8,8 @@ function Sidebar({ onSelectRecipe }) {
   if (status === "loading") return <p>Loading...</p>;
 
   return (
-    <aside className="flex h-screen flex-col gap-3 overflow-y-scroll p-3 shadow-xl">
-      <ul>
+    <aside className="flex h-full flex-col overflow-hidden shadow-xl">
+      <ul className="h-full w-full overflow-y-auto">
         {recipes && recipes.length > 0 ? (
           recipes.map((recipe) => (
             <RecipePreview
