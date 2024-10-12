@@ -1,18 +1,14 @@
-import { useState } from "react";
 import RecipeBox from "../ui/RecipeBox";
 import Sidebar from "../ui/Sidebar";
+import { useParams } from "react-router";
 
 function SearchRecipes() {
-  const [selectedId, setSelectedId] = useState(null);
-
-  function handleSelectRecipe({ id }) {
-    setSelectedId(id);
-  }
+  let { recipeId } = useParams();
 
   return (
     <>
-      <Sidebar onSelectRecipe={handleSelectRecipe} />
-      <RecipeBox />
+      <Sidebar />
+      <RecipeBox id={recipeId} />
     </>
   );
 }

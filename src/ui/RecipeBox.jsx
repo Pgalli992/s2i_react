@@ -1,14 +1,23 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import noImg from "../assets/img/mockup.jpg";
 import { LuMilkOff } from "react-icons/lu";
 import { PiGrainsSlash } from "react-icons/pi";
 import { LuVegan } from "react-icons/lu";
 import { PiPottedPlant } from "react-icons/pi";
 import { handleImgError } from "../utils/helpers";
+import { useEffect } from "react";
+import { fetchRecipeById } from "../services/apiRecipes";
 
-function RecipeBox() {
+function RecipeBox({ id }) {
+  const dispatch = useDispatch();
   const { currentRecipe, status } = useSelector((state) => state.recipe);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchRecipeById(id));
+      console.log(id);
+    }
+  }, [id, dispatch]);
 
   const {
     author,
@@ -72,7 +81,7 @@ function RecipeBox() {
               {dairyFree && (
                 <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
                   <LuMilkOff />
-                  <p className="text-xs">Lactos-free</p>
+                  <p className="text-xs">Dairy-free</p>
                 </span>
               )}
             </div>

@@ -31,7 +31,7 @@ export const fetchRecipesByQuery = createAsyncThunk(
   "recipes/fetchRecipesByQuery",
   async function (searchQuery) {
     const res = await fetch(
-      `${API_URL}complexSearch?apiKey=${API_KEYS}&diet=${dietType}&query=${searchQuery}&number=${numOfResults}`,
+      `${API_URL}complexSearch?apiKey=${API_KEYS}&diet=${dietType}&addRecipeInformation=true&query=${searchQuery}&number=${numOfResults}`,
     );
 
     if (!res.ok) throw new Error("Impossible to fetch data");

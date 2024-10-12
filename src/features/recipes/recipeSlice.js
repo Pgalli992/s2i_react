@@ -1,33 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  fetchRecipeById,
-  fetchRecipesByQuery,
-} from "../../services/apiRecipes";
+import { fetchRecipeById } from "../../services/apiRecipes";
 
 const initialState = {
   status: "idle",
-  recipes: [],
+  selectetId: null,
   currentRecipe: {},
   error: "",
 };
 
-export const recipesSlice = createSlice({
+export const recipeSlice = createSlice({
   name: "recipe",
   initialState,
   reducers: {},
   extraReducers: (builder) =>
     builder
-      .addCase(fetchRecipesByQuery.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchRecipesByQuery.fulfilled, (state, action) => {
-        state.recipes = action.payload.results;
-        state.status = "idle";
-      })
-      .addCase(fetchRecipesByQuery.rejected, (state, action) => {
-        state.status = "error";
-        state.error = action.error.message;
-      })
       .addCase(fetchRecipeById.pending, (state) => {
         state.status = "loading";
       })
@@ -42,4 +28,4 @@ export const recipesSlice = createSlice({
       }),
 });
 
-export default recipesSlice.reducer;
+export default recipeSlice.reducer;

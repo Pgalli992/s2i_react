@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import NumResults from "./NumResults";
 import RecipePreview from "./RecipePreview";
 
-function Sidebar({ onSelectRecipe }) {
-  const { recipes, status } = useSelector((state) => state.recipe);
+function Sidebar() {
+  const { recipes, status } = useSelector((state) => state.search);
 
   if (status === "loading") return <p>Loading...</p>;
 
@@ -12,11 +12,7 @@ function Sidebar({ onSelectRecipe }) {
       <ul className="h-full w-full overflow-y-auto">
         {recipes && recipes.length > 0 ? (
           recipes.map((recipe) => (
-            <RecipePreview
-              recipe={recipe}
-              key={recipe.id}
-              onSelectRecipe={onSelectRecipe}
-            />
+            <RecipePreview recipe={recipe} key={`preview-${recipe.id}`} />
           ))
         ) : (
           <p>No recipes available</p>

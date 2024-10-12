@@ -30,3 +30,7 @@ build a component for allergeni
 adjust the list of ingredients
 
 add instructions, cooking time author and link for each recipe
+
+difficoltà : [gestire i renders (inizialmente un solo slice comportava il render del sidebar)]
+
+Sarebbe stato possibile ottenere tutte le informazioni di ogni ricetta alla prima chiamata ma per migliorare le performance ho scelto di ottenerle con una seconda chiamta della sola ricetta richiesta dall'utente.
