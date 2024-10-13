@@ -1,3 +1,5 @@
+import { plugin } from "postcss";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -24,6 +26,15 @@ export default {
       gridTemplateColumns: {
         header: "1fr 1fr 1fr",
       },
+      plugins: [
+        plugin(function ({ addBase }) {
+          addBase({
+            h1: { color: "black", fontSize: "1.5rem" },
+            h2: { color: "black", fontSize: "1.125rem" },
+            h3: { color: "black", fontSize: "1rem" },
+          });
+        }),
+      ],
     },
     plugins: [],
   },

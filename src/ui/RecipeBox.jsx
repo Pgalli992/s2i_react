@@ -20,7 +20,6 @@ function RecipeBox({ id }) {
   }, [id, dispatch]);
 
   const {
-    author,
     extendedIngredients: ingredients,
     image,
     sourceUrl,
@@ -37,27 +36,32 @@ function RecipeBox({ id }) {
   if (!currentRecipe) return <></>;
 
   return (
-    <div className="relative mx-8 my-4 flex h-max flex-col items-center gap-4 overflow-hidden rounded-md bg-primary-300 p-8 text-primary-900">
-      <h1 className="text-3xl">{title}</h1>
+    <div className="relative mx-8 my-4 flex flex-col items-center gap-4 overflow-y-auto rounded-md bg-primary-300 p-8 text-primary-900">
+      <a className="text-3xl" href={sourceUrl}>
+        {title}
+      </a>
       <div className="grid w-full grid-cols-2 gap-6 p-4">
         <picture className="h-[50vh] w-full">
           <img
             src={image}
-            className="h-full w-full rounded-md object-cover"
+            className="min-h-full w-full rounded-md object-cover"
             alt={title}
             onError={handleImgError}
           />
         </picture>
         <div className="flex h-full flex-col items-center justify-around p-4">
-          <ul className="gap-x-auto text-md grid w-full list-disc grid-flow-col grid-rows-8 rounded-md bg-primary-200 p-6 pl-12">
-            {ingredients && ingredients.length > 0 ? (
-              ingredients.map((ingredient) => (
-                <li key={ingredient.id}>{ingredient.name}</li>
-              ))
-            ) : (
-              <p>No ingredients</p>
-            )}
-          </ul>
+          <div className="w-full rounded-md bg-primary-200 p-6 pl-12">
+            <h2 className="mb-2 text-2xl text-primary-900">Ingredients:</h2>
+            <ul className="gap-x-auto text-md grid w-full list-disc grid-flow-col grid-rows-8">
+              {ingredients && ingredients.length > 0 ? (
+                ingredients.map((ingredient) => (
+                  <li key={ingredient.id}>{ingredient.name}</li>
+                ))
+              ) : (
+                <p>No ingredients</p>
+              )}
+            </ul>
+          </div>
           {
             <div className="flex h-min w-full items-end justify-around text-2xl">
               {vegan && (
@@ -88,12 +92,26 @@ function RecipeBox({ id }) {
           }
         </div>
       </div>
-      <div className="p-4">
+      <section className="p-4">
+        <h2 className="mb-2 text-2xl text-primary-900">Description:</h2>
         <p
           className="text-pretty"
           dangerouslySetInnerHTML={{ __html: summary }}
         ></p>
-      </div>
+      </section>
+      <p className="h-auto">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sequi nihil
+        facere laudantium neque illum dolor eveniet rem beatae aut ipsam
+        commodi, ad voluptate aliquid sint sunt corporis. Enim eligendi
+        consectetur eum repellat ea ex quasi, sunt ullam eius dicta ab quia
+        totam, laudantium aliquam in perspiciatis, officia nam alias est sequi
+        necessitatibus. Blanditiis cupiditate autem saepe odio harum voluptate
+        dicta explicabo. Doloremque reprehenderit maiores quam cum provident!
+        Corrupti reprehenderit aspernatur nam incidunt quaerat labore sunt,
+        cupiditate ea ut aliquid et harum! Sed earum possimus molestias ab,
+        officiis provident aperiam ipsum minus assumenda, blanditiis, natus iste
+        eius tenetur iure. Eligendi.
+      </p>
     </div>
   );
 }
