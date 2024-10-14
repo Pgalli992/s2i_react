@@ -7,6 +7,9 @@ import { PiPottedPlant } from "react-icons/pi";
 import { handleImgError } from "../utils/helpers";
 import { useEffect } from "react";
 import { fetchRecipeById } from "../services/apiRecipes";
+import { BiSolidDish } from "react-icons/bi";
+import { RxLapTimer } from "react-icons/rx";
+import { ColorRing } from "react-loader-spinner";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
@@ -29,9 +32,22 @@ function RecipeBox({ id }) {
     vegetarian,
     dairyFree,
     summary,
+    readyInMinutes: cookingTime,
+    servings,
   } = currentRecipe;
 
-  if (status === "loading") return <p>Loading...</p>;
+  if (status === "loading")
+    return (
+      <ColorRing
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="color-ring-loading"
+        wrapperStyle={{}}
+        wrapperClass="color-ring-wrapper"
+        colors={["#698067"]}
+      />
+    );
 
   if (!currentRecipe) return <></>;
 
@@ -40,16 +56,29 @@ function RecipeBox({ id }) {
       <a className="text-3xl" href={sourceUrl}>
         {title}
       </a>
-      <div className="grid w-full grid-cols-2 gap-6 p-4">
-        <picture className="h-[50vh] w-full">
-          <img
-            src={image}
-            className="min-h-full w-full rounded-md object-cover"
-            alt={title}
-            onError={handleImgError}
-          />
-        </picture>
-        <div className="flex h-full flex-col items-center justify-around p-4">
+      <div className="flex w-full flex-col justify-around">
+        <div className="flex items-center gap-2">
+          <RxLapTimer />
+          <span>Cooking time: {cookingTime} min.</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <BiSolidDish />
+          <span>Servings: {servings}</span>
+        </div>
+      </div>
+      <div className="grid min-h-max w-full grid-cols-2 gap-6">
+        <div className="h-auto">
+          <picture className="h-[50vh] w-full">
+            <img
+              src={image}
+              className="min-h-full w-full rounded-md object-cover"
+              alt={title}
+              onError={handleImgError}
+            />
+          </picture>
+        </div>
+        <div className="flex h-full flex-col items-center justify-between">
           <div className="w-full rounded-md bg-primary-200 p-6 pl-12">
             <h2 className="mb-2 text-2xl text-primary-900">Ingredients:</h2>
             <ul className="gap-x-auto text-md grid w-full list-disc grid-flow-col grid-rows-8">
@@ -63,7 +92,7 @@ function RecipeBox({ id }) {
             </ul>
           </div>
           {
-            <div className="flex h-min w-full items-end justify-around text-2xl">
+            <div className="flex h-min w-full items-end justify-around pb-6 text-2xl">
               {vegan && (
                 <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
                   <LuVegan />

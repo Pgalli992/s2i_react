@@ -8,7 +8,7 @@ function SearchRecipes() {
   return (
     <>
       <Sidebar />
-      <RecipeBox id={recipeId} />
+      {recipeId && <RecipeBox id={recipeId} />}
     </>
   );
 }

@@ -25,20 +25,31 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const API_KEYS = "f8d2d348135f45feb07327844d99dc9c";
 const API_URL = "https://api.spoonacular.com/recipes/";
 const dietType = "vegan";
-const numOfResults = 100;
+const numOfResults = 10;
+
+const TIME_OUT = 1000;
 
 export const fetchRecipesByQuery = createAsyncThunk(
   "recipes/fetchRecipesByQuery",
   async function (searchQuery) {
-    const res = await fetch(
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Request timed out")), TIME_OUT),
+    );
+
+    const fetchData = fetch(
       `${API_URL}complexSearch?apiKey=${API_KEYS}&diet=${dietType}&addRecipeInformation=true&query=${searchQuery}&number=${numOfResults}`,
     );
 
-    if (!res.ok) throw new Error("Impossible to fetch data");
+    try {
+      const res = await Promise.race([fetchData, timeout]);
 
-    const data = await res.json();
-    console.log(data.results);
-    return data;
+      if (!res.ok) throw new Error("Impossible to fetch data");
+
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      throw new Error(error.message || "Failed to fetch recipes");
+    }
   },
 );
 
