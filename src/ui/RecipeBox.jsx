@@ -18,7 +18,6 @@ function RecipeBox({ id }) {
   useEffect(() => {
     if (id) {
       dispatch(fetchRecipeById(id));
-      console.log(id);
     }
   }, [id, dispatch]);
 
@@ -84,7 +83,9 @@ function RecipeBox({ id }) {
             <ul className="gap-x-auto text-md grid w-full list-disc grid-flow-col grid-rows-8">
               {ingredients && ingredients.length > 0 ? (
                 ingredients.map((ingredient) => (
-                  <li key={ingredient.id}>{ingredient.name}</li>
+                  <li key={ingredient.id}>
+                    {ingredient.amount} {ingredient.name}
+                  </li>
                 ))
               ) : (
                 <p>No ingredients</p>

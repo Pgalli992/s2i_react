@@ -25,7 +25,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const API_KEYS = "f8d2d348135f45feb07327844d99dc9c";
 const API_URL = "https://api.spoonacular.com/recipes/";
 const dietType = "vegan";
-const numOfResults = 10;
+const numOfResults = 100;
 
 const TIME_OUT = 1000;
 
@@ -60,7 +60,6 @@ export const fetchRecipeById = createAsyncThunk(
     if (!res.ok) throw Error("Failed getting recipe details");
 
     const data = await res.json();
-    console.log(data);
     return data;
   },
 );

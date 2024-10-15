@@ -1,19 +1,11 @@
-import { useDispatch } from "react-redux";
-
-import { fetchRecipeById } from "../services/apiRecipes";
 import { useNavigate } from "react-router";
 import { handleImgError } from "../utils/helpers";
 function RecipePreview({ recipe }) {
   const { title, image, id } = recipe;
-  // const { recipes, status } = useSelector((state) => state.currentRecipe);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function loadRecipeDetails({ id }) {
-    // onSelectRecipe({ id });
     navigate(`/search_recipes/${id}`);
-    // dispatch(fetchRecipeById(id));
-    // onSelectRecipe("");
   }
 
   return (

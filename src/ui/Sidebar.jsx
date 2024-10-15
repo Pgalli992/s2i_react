@@ -22,7 +22,7 @@ function Sidebar() {
     );
 
   return (
-    <aside className="flex h-full flex-col overflow-hidden shadow-xl">
+    <aside className="flex h-full flex-col overflow-hidden p-2 shadow-xl">
       <ul className="h-full w-full overflow-y-auto">
         {recipes && recipes.length > 0 ? (
           recipes.map((recipe) => (
