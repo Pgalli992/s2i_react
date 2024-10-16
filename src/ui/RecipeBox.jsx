@@ -5,15 +5,19 @@ import { PiGrainsSlash } from "react-icons/pi";
 import { LuVegan } from "react-icons/lu";
 import { PiPottedPlant } from "react-icons/pi";
 import { handleImgError } from "../utils/helpers";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchRecipeById } from "../services/apiRecipes";
 import { BiSolidDish } from "react-icons/bi";
 import { RxLapTimer } from "react-icons/rx";
 import { ColorRing } from "react-loader-spinner";
+import Button from "./Button";
+import { Fraction } from "fractional";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
   const { currentRecipe, status } = useSelector((state) => state.recipe);
+
+  const [numOfGuests, setNumOfGuests] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -55,17 +59,6 @@ function RecipeBox({ id }) {
       <a className="text-3xl" href={sourceUrl}>
         {title}
       </a>
-      <div className="flex w-full flex-col justify-around">
-        <div className="flex items-center gap-2">
-          <RxLapTimer />
-          <span>Cooking time: {cookingTime} min.</span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <BiSolidDish />
-          <span>Servings: {servings}</span>
-        </div>
-      </div>
       <div className="grid min-h-max w-full grid-cols-2 gap-6">
         <div className="h-auto">
           <picture className="h-[50vh] w-full">
@@ -77,71 +70,97 @@ function RecipeBox({ id }) {
             />
           </picture>
         </div>
-        <div className="flex h-full flex-col items-center justify-between">
-          <div className="w-full rounded-md bg-primary-200 p-6 pl-12">
-            <h2 className="mb-2 text-2xl text-primary-900">Ingredients:</h2>
-            <ul className="gap-x-auto text-md grid w-full list-disc grid-flow-col grid-rows-8">
-              {ingredients && ingredients.length > 0 ? (
-                ingredients.map((ingredient) => (
-                  <li key={ingredient.id}>
-                    {ingredient.amount} {ingredient.name}
-                  </li>
-                ))
-              ) : (
-                <p>No ingredients</p>
-              )}
-            </ul>
+        <section className="flex flex-col justify-between">
+          <div className="rounded-md bg-primary-200 p-6">
+            <h2 className="mb-2 text-2xl text-primary-900">Description:</h2>
+            <p
+              className="text-pretty"
+              dangerouslySetInnerHTML={{ __html: summary }}
+            ></p>
           </div>
-          {
-            <div className="flex h-min w-full items-end justify-around pb-6 text-2xl">
-              {vegan && (
-                <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
-                  <LuVegan />
-                  <p className="text-xs">Vegan</p>
-                </span>
-              )}
-              {vegetarian && (
-                <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
-                  <PiPottedPlant />
-                  <p className="text-xs">Vegetarian</p>
-                </span>
-              )}
-              {glutenFree && (
-                <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
-                  <PiGrainsSlash />
-                  <p className="text-xs">Gluten-free</p>
-                </span>
-              )}
-              {dairyFree && (
-                <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
-                  <LuMilkOff />
-                  <p className="text-xs">Dairy-free</p>
-                </span>
-              )}
-            </div>
-          }
+          <div className="flex flex-col items-center justify-between">
+            {
+              <div className="flex h-min w-full items-end justify-around pb-2 text-2xl">
+                {vegan && (
+                  <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                    <LuVegan />
+                    <p className="text-xs">Vegan</p>
+                  </span>
+                )}
+                {vegetarian && (
+                  <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                    <PiPottedPlant />
+                    <p className="text-xs">Vegetarian</p>
+                  </span>
+                )}
+                {glutenFree && (
+                  <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                    <PiGrainsSlash />
+                    <p className="text-xs">Gluten-free</p>
+                  </span>
+                )}
+                {dairyFree && (
+                  <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                    <LuMilkOff />
+                    <p className="text-xs">Dairy-free</p>
+                  </span>
+                )}
+              </div>
+            }
+          </div>
+        </section>
+      </div>
+      <div className="flex w-full justify-around rounded-md bg-primary-200 px-2 py-4">
+        <div className="flex items-center gap-2">
+          <BiSolidDish />
+          <div className="flex items-center justify-center gap-2">
+            <span>Servings:</span>
+            <button
+              className="aspect-square w-6 rounded-full bg-primary-800 text-primary-100"
+              onClick={() =>
+                numOfGuests > 1 ? setNumOfGuests(numOfGuests - 1) : numOfGuests
+              }
+            >
+              -
+            </button>
+            <input
+              type="number"
+              value={numOfGuests}
+              onChange={(e) => setNumOfGuests(e.target.value)}
+              className="w-8 bg-primary-200 text-center"
+            />
+            <button
+              className="aspect-square w-6 rounded-full bg-primary-800 text-primary-100"
+              onClick={() => setNumOfGuests(numOfGuests + 1)}
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <RxLapTimer />
+          <span>Cooking time: {cookingTime} min.</span>
         </div>
       </div>
-      <section className="p-4">
-        <h2 className="mb-2 text-2xl text-primary-900">Description:</h2>
-        <p
-          className="text-pretty"
-          dangerouslySetInnerHTML={{ __html: summary }}
-        ></p>
-      </section>
-      <p className="h-auto">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sequi nihil
-        facere laudantium neque illum dolor eveniet rem beatae aut ipsam
-        commodi, ad voluptate aliquid sint sunt corporis. Enim eligendi
-        consectetur eum repellat ea ex quasi, sunt ullam eius dicta ab quia
-        totam, laudantium aliquam in perspiciatis, officia nam alias est sequi
-        necessitatibus. Blanditiis cupiditate autem saepe odio harum voluptate
-        dicta explicabo. Doloremque reprehenderit maiores quam cum provident!
-        Corrupti reprehenderit aspernatur nam incidunt quaerat labore sunt,
-        cupiditate ea ut aliquid et harum! Sed earum possimus molestias ab,
-        officiis provident aperiam ipsum minus assumenda, blanditiis, natus iste
-        eius tenetur iure. Eligendi.
-      </p>
+      <div className="grid-col-2 grid w-full p-6 pl-12">
+        <h2 className="mb-2 text-2xl text-primary-900">Ingredients:</h2>
+        <ul className="text-md grid w-full list-disc">
+          {ingredients && ingredients.length > 0 ? (
+            ingredients.map((ingredient) => (
+              <li key={ingredient.id}>
+                {ingredient.amount
+                  ? new Fraction(
+                      (ingredient.amount / servings) * numOfGuests,
+                    ).toString()
+                  : ""}{" "}
+                {ingredient.name}
+              </li>
+            ))
+          ) : (
+            <p>No ingredients</p>
+          )}
+        </ul>
+      </div>
     </div>
   );
 }
