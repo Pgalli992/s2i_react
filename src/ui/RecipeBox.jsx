@@ -10,20 +10,25 @@ import { fetchRecipeById } from "../services/apiRecipes";
 import { BiSolidDish } from "react-icons/bi";
 import { RxLapTimer } from "react-icons/rx";
 import { ColorRing } from "react-loader-spinner";
-import Button from "./Button";
-import { Fraction } from "fractional";
+import Fraction from "fraction.js";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
   const { currentRecipe, status } = useSelector((state) => state.recipe);
 
-  const [numOfGuests, setNumOfGuests] = useState("");
+  const [numOfGuests, setNumOfGuests] = useState(1);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchRecipeById(id));
     }
   }, [id, dispatch]);
+
+  useEffect(() => {
+    if (currentRecipe && currentRecipe.servings) {
+      setNumOfGuests(currentRecipe.servings);
+    }
+  }, [currentRecipe]);
 
   const {
     extendedIngredients: ingredients,
@@ -37,6 +42,7 @@ function RecipeBox({ id }) {
     summary,
     readyInMinutes: cookingTime,
     servings,
+    istructions,
   } = currentRecipe;
 
   if (status === "loading")
@@ -70,11 +76,11 @@ function RecipeBox({ id }) {
             />
           </picture>
         </div>
-        <section className="flex flex-col justify-between">
+        <section className="flex flex-col justify-between gap-2">
           <div className="rounded-md bg-primary-200 p-6">
             <h2 className="mb-2 text-2xl text-primary-900">Description:</h2>
             <p
-              className="text-pretty"
+              className="text-ellipsis-multiline h-auto w-full overflow-hidden text-pretty"
               dangerouslySetInnerHTML={{ __html: summary }}
             ></p>
           </div>
@@ -131,7 +137,7 @@ function RecipeBox({ id }) {
             />
             <button
               className="aspect-square w-6 rounded-full bg-primary-800 text-primary-100"
-              onClick={() => setNumOfGuests(numOfGuests + 1)}
+              onClick={() => setNumOfGuests(+numOfGuests + 1)}
             >
               +
             </button>
@@ -149,11 +155,24 @@ function RecipeBox({ id }) {
             ingredients.map((ingredient) => (
               <li key={ingredient.id}>
                 {ingredient.amount
-                  ? new Fraction(
-                      (ingredient.amount / servings) * numOfGuests,
-                    ).toString()
-                  : ""}{" "}
-                {ingredient.name}
+                  ? (() => {
+                      const totalAmount =
+                        (ingredient.amount / servings) * numOfGuests;
+                      const integerPart = Math.trunc(totalAmount); // Parte intera
+                      const decimalPart = totalAmount - integerPart; // Parte decimale
+
+                      // Converto la parte decimale in frazione se presente
+                      const fractionPart =
+                        decimalPart > 0
+                          ? new Fraction(decimalPart).toFraction(true)
+                          : "";
+
+                      // Combinazione di parte intera, frazionaria e unità
+                      return `${integerPart > 0 ? integerPart : ""} ${fractionPart} ${
+                        ingredient.unit ? `${ingredient.unit} of` : ""
+                      } ${ingredient.name}`;
+                    })()
+                  : ingredient.name}
               </li>
             ))
           ) : (

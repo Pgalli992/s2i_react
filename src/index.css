@@ -13,3 +13,11 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.text-ellipsis-multiline {
+  display: -webkit-box;
+  -webkit-line-clamp: 12; /* Numero massimo di righe */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
