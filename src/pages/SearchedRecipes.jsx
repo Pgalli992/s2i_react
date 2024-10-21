@@ -2,7 +2,7 @@ import RecipeBox from "../ui/RecipeBox";
 import Sidebar from "../ui/Sidebar";
 import { useParams } from "react-router";
 
-function SearchRecipes() {
+function SearchedRecipes() {
   let { recipeId } = useParams();
 
   return (
@@ -13,4 +13,4 @@ function SearchRecipes() {
   );
 }
 
-export default SearchRecipes;
+export default SearchedRecipes;

@@ -42,20 +42,22 @@ function RecipeBox({ id }) {
     summary,
     readyInMinutes: cookingTime,
     servings,
-    istructions,
+    instructions,
   } = currentRecipe;
 
   if (status === "loading")
     return (
-      <ColorRing
-        visible={true}
-        height="80"
-        width="80"
-        ariaLabel="color-ring-loading"
-        wrapperStyle={{}}
-        wrapperClass="color-ring-wrapper"
-        colors={["#698067"]}
-      />
+      <div className="flex h-1/2 w-full items-center justify-center">
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="color-ring-loading"
+          wrapperStyle={{}}
+          wrapperClass="color-ring-wrapper"
+          colors={["#698067", "#698067", "#698067", "#698067", "#698067"]}
+        />
+      </div>
     );
 
   if (!currentRecipe) return <></>;
@@ -78,7 +80,7 @@ function RecipeBox({ id }) {
         </div>
         <section className="flex flex-col justify-between gap-2">
           <div className="rounded-md bg-primary-200 p-6">
-            <h2 className="mb-2 text-2xl text-primary-900">Description:</h2>
+            <h2 className="mb-2 text-2xl">Description:</h2>
             <p
               className="text-ellipsis-multiline h-auto w-full overflow-hidden text-pretty"
               dangerouslySetInnerHTML={{ __html: summary }}
@@ -148,37 +150,47 @@ function RecipeBox({ id }) {
           <span>Cooking time: {cookingTime} min.</span>
         </div>
       </div>
-      <div className="grid-col-2 grid w-full p-6 pl-12">
-        <h2 className="mb-2 text-2xl text-primary-900">Ingredients:</h2>
-        <ul className="text-md grid w-full list-disc">
-          {ingredients && ingredients.length > 0 ? (
-            ingredients.map((ingredient) => (
-              <li key={ingredient.id}>
-                {ingredient.amount
-                  ? (() => {
-                      const totalAmount =
-                        (ingredient.amount / servings) * numOfGuests;
-                      const integerPart = Math.trunc(totalAmount); // Parte intera
-                      const decimalPart = totalAmount - integerPart; // Parte decimale
+      <div className="grid h-auto w-full grid-cols-2 items-center justify-center gap-10">
+        <div className="h-full w-full rounded-md bg-primary-200 p-4 pl-6">
+          <h2 className="mb-2 text-2xl">Ingredients:</h2>
+          <ul className="text-md grid w-full list-disc">
+            {ingredients && ingredients.length > 0 ? (
+              ingredients.map((ingredient) => (
+                <li key={ingredient.id}>
+                  {ingredient.amount
+                    ? (() => {
+                        const totalAmount =
+                          (ingredient.amount / servings) * numOfGuests;
+                        const integerPart = Math.trunc(totalAmount); // Parte intera
+                        const decimalPart = totalAmount - integerPart; // Parte decimale
 
-                      // Converto la parte decimale in frazione se presente
-                      const fractionPart =
-                        decimalPart > 0
-                          ? new Fraction(decimalPart).toFraction(true)
-                          : "";
+                        // Converto la parte decimale in frazione se presente
+                        const fractionPart =
+                          decimalPart > 0
+                            ? new Fraction(decimalPart).toFraction(true)
+                            : "";
 
-                      // Combinazione di parte intera, frazionaria e unità
-                      return `${integerPart > 0 ? integerPart : ""} ${fractionPart} ${
-                        ingredient.unit ? `${ingredient.unit} of` : ""
-                      } ${ingredient.name}`;
-                    })()
-                  : ingredient.name}
-              </li>
-            ))
+                        // Combinazione di parte intera, frazionaria e unità
+                        return `${integerPart > 0 ? integerPart : ""} ${fractionPart} ${
+                          ingredient.unit ? `${ingredient.unit} of` : ""
+                        } ${ingredient.name}`;
+                      })()
+                    : ingredient.name}
+                </li>
+              ))
+            ) : (
+              <p>No ingredients</p>
+            )}
+          </ul>
+        </div>
+        <div className="h-full w-full rounded-md bg-primary-200 p-4">
+          <h2 className="mb-2 text-2xl">Instructions:</h2>
+          {instructions ? (
+            <p dangerouslySetInnerHTML={{ __html: summary }}></p>
           ) : (
-            <p>No ingredients</p>
+            <p>No instructions</p>
           )}
-        </ul>
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
-import SearchRecipes from "./pages/SearchRecipes";
+import SearchedRecipes from "./pages/SearchedRecipes";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
@@ -19,9 +19,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/search_recipes",
-        element: <SearchRecipes />,
+        element: <SearchedRecipes />,
       },
-      { path: "/search_recipes/:recipeId", element: <SearchRecipes /> },
+      { path: "/search_recipes/:recipeId", element: <SearchedRecipes /> },
     ],
   },
 ]);

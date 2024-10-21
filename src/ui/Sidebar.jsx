@@ -8,7 +8,7 @@ function Sidebar() {
 
   if (status === "loading")
     return (
-      <div className="flex justify-center">
+      <div className="flex h-1/2 items-center justify-center">
         <ColorRing
           visible={true}
           height="80"

@@ -35,4 +35,6 @@ difficoltà : [gestire i renders (inizialmente un solo slice comportava il rende
 
 Sarebbe stato possibile ottenere tutte le informazioni di ogni ricetta alla prima chiamata ma per migliorare le performance ho scelto di ottenerle con una seconda chiamta della sola ricetta richiesta dall'utente.
 
-Controllare perchè fetchById fa 2 chiamate.
+Controllare perchè fetchById fa 2 chiamate. (solo al primo click)
+
+Aggiornando la pagina il componente "RecipeDetails" rimane "pieno" ovviamente perchè i dati sono presenti. (come posso nascondere il contenuto)?
