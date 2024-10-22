@@ -11,6 +11,8 @@ import { BiSolidDish } from "react-icons/bi";
 import { RxLapTimer } from "react-icons/rx";
 import { ColorRing } from "react-loader-spinner";
 import Fraction from "fraction.js";
+import { HiOutlineBookmark } from "react-icons/hi2";
+import { addBookmark } from "../features/recipes/recipeSlice";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
@@ -64,9 +66,17 @@ function RecipeBox({ id }) {
 
   return (
     <div className="relative mx-8 my-4 flex flex-col items-center gap-4 overflow-y-auto rounded-md bg-primary-300 p-8 text-primary-900">
-      <a className="text-3xl" href={sourceUrl}>
-        {title}
-      </a>
+      <div className="flex gap-6">
+        <a className="text-3xl" href={sourceUrl}>
+          {title}
+        </a>
+        <button
+          className="flex aspect-square w-10 items-center justify-center rounded-full border-[1px] border-primary-900 bg-primary-100 duration-200 hover:scale-125 hover:bg-primary-900 hover:text-primary-100 hover:shadow-sm"
+          onClick={() => dispatch(addBookmark(id))}
+        >
+          <HiOutlineBookmark className="text-2xl" />
+        </button>
+      </div>
       <div className="grid min-h-max w-full grid-cols-2 gap-6">
         <div className="h-auto">
           <picture className="h-[50vh] w-full">
@@ -150,7 +160,7 @@ function RecipeBox({ id }) {
           <span>Cooking time: {cookingTime} min.</span>
         </div>
       </div>
-      <div className="grid h-auto w-full grid-cols-2 items-center justify-center gap-10">
+      <div className="grid h-auto w-full grid-cols-2 items-center justify-center gap-6">
         <div className="h-full w-full rounded-md bg-primary-200 p-4 pl-6">
           <h2 className="mb-2 text-2xl">Ingredients:</h2>
           <ul className="text-md grid w-full list-disc">
