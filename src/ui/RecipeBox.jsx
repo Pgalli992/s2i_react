@@ -72,7 +72,7 @@ function RecipeBox({ id }) {
         </a>
         <button
           className="flex aspect-square w-10 items-center justify-center rounded-full border-[1px] border-primary-900 bg-primary-100 duration-200 hover:scale-125 hover:bg-primary-900 hover:text-primary-100 hover:shadow-sm"
-          onClick={() => dispatch(addBookmark(id))}
+          onClick={() => dispatch(addBookmark(currentRecipe))}
         >
           <HiOutlineBookmark className="text-2xl" />
         </button>
@@ -196,7 +196,7 @@ function RecipeBox({ id }) {
         <div className="h-full w-full rounded-md bg-primary-200 p-4">
           <h2 className="mb-2 text-2xl">Instructions:</h2>
           {instructions ? (
-            <p dangerouslySetInnerHTML={{ __html: summary }}></p>
+            <p dangerouslySetInnerHTML={{ __html: instructions }}></p>
           ) : (
             <p>No instructions</p>
           )}

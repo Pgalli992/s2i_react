@@ -10,7 +10,7 @@ function RecipePreview({ recipe }) {
 
   return (
     <li
-      className="flex items-center gap-4 rounded-md bg-primary-100 px-4 py-2 shadow-sm transition-all duration-300 hover:scale-105 hover:bg-primary-200 hover:shadow-md focus:bg-primary-200"
+      className="flex w-[92%] items-center gap-4 rounded-md border-b-[1px] border-primary-200 bg-primary-100 px-4 py-2 transition-all duration-300 hover:scale-105 hover:bg-primary-200 hover:shadow-md focus:bg-primary-200"
       onClick={(e) => {
         e.preventDefault();
         loadRecipeDetails({ id });

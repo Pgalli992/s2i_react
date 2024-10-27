@@ -14,11 +14,10 @@ export const recipeSlice = createSlice({
   initialState,
   reducers: {
     addBookmark: (state, action) => {
-      const selectetId = action.payload;
-      console.log(selectetId);
+      const selectedRecipe = action.payload;
       // Controlla se l'ID esiste già nei preferiti per evitare duplicati
-      if (!state.bookmarks.includes(selectetId)) {
-        state.bookmarks.push(selectetId);
+      if (!state.bookmarks.includes(selectedRecipe)) {
+        state.bookmarks.push(selectedRecipe);
       }
     },
   },
