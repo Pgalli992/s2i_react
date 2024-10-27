@@ -38,3 +38,5 @@ Sarebbe stato possibile ottenere tutte le informazioni di ogni ricetta alla prim
 Controllare perchè fetchById fa 2 chiamate. (solo al primo click)
 
 Aggiornando la pagina il componente "RecipeDetails" rimane "pieno" ovviamente perchè i dati sono presenti. (come posso nascondere il contenuto)?
+
+Aggiungere tasto per rimuovere le ricette dai preferiti.
