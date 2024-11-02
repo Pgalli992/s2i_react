@@ -40,3 +40,7 @@ Controllare perchè fetchById fa 2 chiamate. (solo al primo click)
 Aggiornando la pagina il componente "RecipeDetails" rimane "pieno" ovviamente perchè i dati sono presenti. (come posso nascondere il contenuto)?
 
 Aggiungere tasto per rimuovere le ricette dai preferiti.
+
+Rendere il 'Button' component più riutilizzabile, anche per eliminare le ricette dalle preferite.
+
+Gestire la sidebar in pagine? (non mi piace, miglioe ux con la lista completa, da valutare se inserire 'carica altri' visto che API consente di scaricare solo 100 risulatati ad interrogazione)

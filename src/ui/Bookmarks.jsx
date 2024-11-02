@@ -3,10 +3,13 @@ import Badge from "./Badge";
 import { HiOutlineBookmark } from "react-icons/hi2";
 import { useSelector } from "react-redux";
 import RecipePreview from "./RecipePreview";
+import Button from "./Button";
 
 function Bookmarks() {
   const [isOpen, setIsOpen] = useState(false);
-  const { bookmarks } = useSelector((state) => state.recipe);
+  const { bookmarks } = useSelector((state) => state.bookmarks);
+
+  // const dispatch = useDispatch();
 
   function handleClick() {
     setIsOpen((open) => !open);
@@ -23,7 +26,7 @@ function Bookmarks() {
         <Badge numOfFavorites={bookmarks.length} />
       </button>
       {isOpen && (
-        <div className="min-1/3 absolute right-6 top-20 max-h-[70vh] w-1/4 overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-primary-700 bg-primary-100 py-4 shadow-2xl">
+        <div className="min-1/3 absolute right-6 top-20 flex max-h-[70vh] w-1/4 items-center overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-primary-700 bg-primary-100 py-4 pr-2 shadow-2xl">
           <ul className="flex flex-col items-center">
             {bookmarks && bookmarks.length > 0 ? (
               bookmarks.map((recipe) => (
@@ -33,6 +36,10 @@ function Bookmarks() {
               <p>No recipes available</p>
             )}
           </ul>
+          <Button
+            // onClick={() => dispatch(removeBookmark(currentBookmark))}
+            text="&times;"
+          />
         </div>
       )}
     </>

@@ -12,13 +12,22 @@ import { RxLapTimer } from "react-icons/rx";
 import { ColorRing } from "react-loader-spinner";
 import Fraction from "fraction.js";
 import { HiOutlineBookmark } from "react-icons/hi2";
-import { addBookmark } from "../features/recipes/recipeSlice";
+import { HiBookmark } from "react-icons/hi2";
+import {
+  addBookmark,
+  removeBookmark,
+} from "../features/bookmarks/bookmarksSlice";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
+
   const { currentRecipe, status } = useSelector((state) => state.recipe);
+  const { bookmarks } = useSelector((state) => state.bookmarks);
 
   const [numOfGuests, setNumOfGuests] = useState(1);
+  const isAlreadyBookmarked = bookmarks.some(
+    (recipe) => recipe.id === currentRecipe.id,
+  );
 
   useEffect(() => {
     if (id) {
@@ -31,6 +40,12 @@ function RecipeBox({ id }) {
       setNumOfGuests(currentRecipe.servings);
     }
   }, [currentRecipe]);
+
+  const handleAddBookmark = () => {
+    if (!isAlreadyBookmarked) {
+      dispatch(addBookmark({ currentRecipe }));
+    }
+  };
 
   const {
     extendedIngredients: ingredients,
@@ -72,9 +87,17 @@ function RecipeBox({ id }) {
         </a>
         <button
           className="flex aspect-square w-10 items-center justify-center rounded-full border-[1px] border-primary-900 bg-primary-100 duration-200 hover:scale-125 hover:bg-primary-900 hover:text-primary-100 hover:shadow-sm"
-          onClick={() => dispatch(addBookmark(currentRecipe))}
+          onClick={
+            isAlreadyBookmarked
+              ? () => dispatch(removeBookmark(currentRecipe.id))
+              : handleAddBookmark
+          }
         >
-          <HiOutlineBookmark className="text-2xl" />
+          {isAlreadyBookmarked ? (
+            <HiBookmark className="text-2xl" />
+          ) : (
+            <HiOutlineBookmark className="text-2xl" />
+          )}
         </button>
       </div>
       <div className="grid min-h-max w-full grid-cols-2 gap-6">

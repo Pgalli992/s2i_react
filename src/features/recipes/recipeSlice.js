@@ -7,20 +7,13 @@ const initialState = {
   currentRecipe: {},
   error: "",
   bookmarks: [],
+  currentBookmark: {},
 };
 
 export const recipeSlice = createSlice({
   name: "recipe",
   initialState,
-  reducers: {
-    addBookmark: (state, action) => {
-      const selectedRecipe = action.payload;
-      // Controlla se l'ID esiste già nei preferiti per evitare duplicati
-      if (!state.bookmarks.includes(selectedRecipe)) {
-        state.bookmarks.push(selectedRecipe);
-      }
-    },
-  },
+  reducers: {},
   extraReducers: (builder) =>
     builder
       .addCase(fetchRecipeById.pending, (state) => {
@@ -37,6 +30,6 @@ export const recipeSlice = createSlice({
       }),
 });
 
-export const { addBookmark } = recipeSlice.actions;
+export const { addBookmark, removeBookmark } = recipeSlice.actions;
 
 export default recipeSlice.reducer;
