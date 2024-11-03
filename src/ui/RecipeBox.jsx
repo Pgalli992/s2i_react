@@ -16,7 +16,7 @@ import { HiBookmark } from "react-icons/hi2";
 import {
   addBookmark,
   removeBookmark,
-} from "../features/bookmarks/bookmarksSlice";
+} from "../features/bookmarks/bookmarksSlice.js";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
