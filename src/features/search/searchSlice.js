@@ -11,14 +11,18 @@ const initialState = {
 export const searchSlice = createSlice({
   name: "searchedRecipe",
   initialState,
-  reducers: {},
+  reducers: {
+    clearRecipes: (state) => {
+      state.recipes = [];
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(fetchRecipesByQuery.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchRecipesByQuery.fulfilled, (state, action) => {
-        state.recipes = action.payload.results;
+        state.recipes = [...state.recipes, ...action.payload.results];
         state.status = "idle";
       })
       .addCase(fetchRecipesByQuery.rejected, (state, action) => {
@@ -26,5 +30,7 @@ export const searchSlice = createSlice({
         state.error = action.error.message;
       }),
 });
+
+export const { clearRecipes } = searchSlice.actions;
 
 export default searchSlice.reducer;
