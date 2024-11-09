@@ -17,9 +17,12 @@ import {
   addBookmark,
   removeBookmark,
 } from "../features/bookmarks/bookmarksSlice.js";
+import { useMoveBack } from "../hooks/useMoveBack.js";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
+
+  const moveBack = useMoveBack();
 
   const { currentRecipe, status } = useSelector((state) => state.recipe);
   const { bookmarks } = useSelector((state) => state.bookmarks);
@@ -80,9 +83,12 @@ function RecipeBox({ id }) {
   if (!currentRecipe) return <></>;
 
   return (
-    <div className="relative mx-8 my-4 flex flex-col items-center gap-4 overflow-y-auto rounded-md bg-primary-300 p-8 text-primary-900">
-      <div className="flex gap-6">
-        <a className="text-3xl" href={sourceUrl}>
+    <div className="absolute my-1 flex h-full flex-col items-center gap-6 overflow-y-scroll rounded-md bg-primary-300 p-4 text-primary-900 sm:static sm:mx-8 sm:my-4 sm:p-8">
+      <div className="flex items-center gap-6">
+        <button className="text-xl sm:hidden" onClick={moveBack}>
+          &larr;
+        </button>
+        <a className="text-2xl sm:text-3xl" href={sourceUrl}>
           {title}
         </a>
         <button
@@ -100,7 +106,7 @@ function RecipeBox({ id }) {
           )}
         </button>
       </div>
-      <div className="grid min-h-max w-full grid-cols-2 gap-6">
+      <div className="flex min-h-max w-full flex-col gap-6 sm:grid sm:grid-cols-2">
         <div className="h-auto">
           <picture className="h-[50vh] w-full">
             <img
@@ -111,7 +117,7 @@ function RecipeBox({ id }) {
             />
           </picture>
         </div>
-        <section className="flex flex-col justify-between gap-2">
+        <section className="flex flex-col justify-between gap-4 sm:gap-2">
           <div className="rounded-md bg-primary-200 p-6">
             <h2 className="mb-2 text-2xl">Description:</h2>
             <p
@@ -121,27 +127,27 @@ function RecipeBox({ id }) {
           </div>
           <div className="flex flex-col items-center justify-between">
             {
-              <div className="flex h-min w-full items-end justify-around pb-2 text-2xl">
+              <div className="flex h-min w-full items-end justify-around pb-2 text-xl sm:text-2xl">
                 {vegan && (
-                  <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 sm:h-20">
                     <LuVegan />
                     <p className="text-xs">Vegan</p>
                   </span>
                 )}
                 {vegetarian && (
-                  <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 sm:h-20">
                     <PiPottedPlant />
                     <p className="text-xs">Vegetarian</p>
                   </span>
                 )}
                 {glutenFree && (
-                  <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 sm:h-20">
                     <PiGrainsSlash />
                     <p className="text-xs">Gluten-free</p>
                   </span>
                 )}
                 {dairyFree && (
-                  <span className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary-100">
+                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 sm:h-20">
                     <LuMilkOff />
                     <p className="text-xs">Dairy-free</p>
                   </span>
@@ -151,7 +157,7 @@ function RecipeBox({ id }) {
           </div>
         </section>
       </div>
-      <div className="flex w-full justify-around rounded-md bg-primary-200 px-2 py-4">
+      <div className="flex w-full flex-col items-center justify-center gap-2 rounded-md bg-primary-200 px-2 py-4 sm:flex-row sm:justify-around">
         <div className="flex items-center gap-2">
           <BiSolidDish />
           <div className="flex items-center justify-center gap-2">
@@ -183,7 +189,7 @@ function RecipeBox({ id }) {
           <span>Cooking time: {cookingTime} min.</span>
         </div>
       </div>
-      <div className="grid h-auto w-full grid-cols-2 items-center justify-center gap-6">
+      <div className="flex h-auto w-full flex-col items-center justify-center gap-6 sm:grid sm:grid-cols-2">
         <div className="h-full w-full rounded-md bg-primary-200 p-4 pl-6">
           <h2 className="mb-2 text-2xl">Ingredients:</h2>
           <ul className="text-md grid w-full list-disc">
@@ -217,7 +223,7 @@ function RecipeBox({ id }) {
           </ul>
         </div>
         <div className="h-full w-full rounded-md bg-primary-200 p-4">
-          <h2 className="mb-2 text-2xl">Instructions:</h2>
+          <h2 className="mb-2 text-xl sm:text-2xl">Instructions:</h2>
           {instructions ? (
             <p dangerouslySetInnerHTML={{ __html: instructions }}></p>
           ) : (

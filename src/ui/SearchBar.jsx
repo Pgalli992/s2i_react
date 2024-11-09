@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { fetchRecipesByQuery } from "../services/apiRecipes";
 import Button from "./Button";
+import { clearRecipes } from "../features/search/searchSlice";
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ function SearchBar({ placeholder = "" }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!searchQuery) return;
+    dispatch(clearRecipes());
     dispatch(fetchRecipesByQuery({ searchQuery }));
     navigate(`search_recipes`);
   }

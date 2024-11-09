@@ -26,3 +26,5 @@ Aggiornando la pagina il componente "RecipeDetails" rimane "pieno" ovviamente pe
 Gestire la sidebar in pagine? (non mi piace, miglioe ux con la lista completa, da valutare se inserire 'carica altri' visto che API consente di scaricare solo 100 risulatati ad interrogazione)
 
 Configurare la chiamata API per filtrare i risultati. Vedi la documentazione di spoonacular.
+
+Far comparire un avviso quando non ci sono più ricette da caricare (load more...)
