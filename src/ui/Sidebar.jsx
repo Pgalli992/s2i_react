@@ -22,8 +22,8 @@ function Sidebar() {
     );
 
   return (
-    <aside className="flex h-full overflow-hidden shadow-xl">
-      <ul className="flex h-full w-full flex-col items-center gap-2 overflow-y-auto pb-20">
+    <aside className="flex h-full overflow-y-auto shadow-xl">
+      <ul className="flex h-full w-full flex-col items-center gap-2 pb-20">
         {recipes && recipes.length > 0 ? (
           recipes.map((recipe) => (
             <RecipePreview recipe={recipe} key={`preview-${recipe.id}`} />

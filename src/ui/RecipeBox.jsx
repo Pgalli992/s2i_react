@@ -83,7 +83,7 @@ function RecipeBox({ id }) {
   if (!currentRecipe) return <></>;
 
   return (
-    <div className="absolute my-1 flex h-full flex-col items-center gap-6 overflow-y-scroll rounded-md bg-primary-300 p-4 text-primary-900 sm:static sm:mx-8 sm:my-4 sm:p-8">
+    <div className="absolute flex h-full flex-col items-center gap-6 overflow-y-scroll rounded-md bg-primary-300 p-4 text-primary-900 sm:static sm:mx-8 sm:my-4 sm:p-8">
       <div className="flex items-center gap-6">
         <button className="text-xl sm:hidden" onClick={moveBack}>
           &larr;

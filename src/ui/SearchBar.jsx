@@ -24,7 +24,7 @@ function SearchBar({ placeholder = "" }) {
   return (
     <div className="col-span-3 row-start-2 flex w-full justify-center gap-4 sm:col-span-1 sm:col-start-2 sm:row-start-1 sm:gap-8">
       <form
-        className="group relative flex h-full w-[100%] items-center justify-center gap-1 md:w-[70%]"
+        className="group relative flex h-full w-[90%] items-center justify-center gap-1 md:w-[70%]"
         onSubmit={handleSubmit}
       >
         <input
@@ -40,20 +40,20 @@ function SearchBar({ placeholder = "" }) {
           <HiMagnifyingGlass />
         </button>
       </form>
-      {/* {recipes.length >= 100 && ( */}
-      <Button
-        text="Load more..."
-        fontSizeInPixels="3"
-        onClick={() => {
-          dispatch(
-            fetchRecipesByQuery({
-              searchQuery: searchQuery,
-              resultsAlreadyFetched: recipes.length,
-            }),
-          );
-        }}
-      />
-      {/* )} */}
+      {recipes.length >= 100 && (
+        <Button
+          text="Load more..."
+          fontSizeInPixels="3"
+          onClick={() => {
+            dispatch(
+              fetchRecipesByQuery({
+                searchQuery: searchQuery,
+                resultsAlreadyFetched: recipes.length,
+              }),
+            );
+          }}
+        />
+      )}
     </div>
   );
 }
