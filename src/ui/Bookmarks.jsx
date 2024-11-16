@@ -32,17 +32,17 @@ function Bookmarks() {
   return (
     <>
       <button
-        className="align-end relative flex w-auto items-center justify-center gap-1 justify-self-end rounded-full bg-primary-500 p-2 duration-150 hover:bg-primary-700 hover:text-primary-200 sm:justify-self-end sm:px-4 sm:py-2"
+        className="align-end relative flex w-auto items-center justify-center gap-1 justify-self-end rounded-full bg-primary-500 p-2 duration-150 hover:bg-primary-700 hover:text-primary-200 md:justify-self-end md:px-4 md:py-2"
         onClick={() => handleClick()}
       >
-        <HiOutlineBookmark className="text-md sm:text-2xl" />
-        <span className="hidden sm:inline">Bookmarks</span>
+        <HiOutlineBookmark className="text-md md:text-2xl" />
+        <span className="hidden md:inline">Bookmarks</span>
         <Badge numOfFavorites={bookmarks.length} />
       </button>
       {isOpen && (
         <div
           ref={ref}
-          className="absolute right-2 top-20 flex max-h-[70vh] w-[95%] items-center overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-primary-700 bg-primary-100 py-4 pr-2 text-start shadow-2xl sm:right-6 sm:w-1/4"
+          className="absolute right-2 top-20 flex max-h-[70vh] w-[95%] items-center overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-primary-700 bg-primary-100 py-4 pr-2 text-start shadow-2xl md:right-6 md:w-1/4"
         >
           <ul className="flex w-full flex-col items-center">
             {bookmarks && bookmarks.length > 0 ? (

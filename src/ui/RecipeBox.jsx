@@ -5,7 +5,7 @@ import { PiGrainsSlash } from "react-icons/pi";
 import { LuVegan } from "react-icons/lu";
 import { PiPottedPlant } from "react-icons/pi";
 import { handleImgError } from "../utils/helpers";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchRecipeById } from "../services/apiRecipes";
 import { BiSolidDish } from "react-icons/bi";
 import { RxLapTimer } from "react-icons/rx";
@@ -27,31 +27,8 @@ function RecipeBox({ id }) {
   const { currentRecipe, status } = useSelector((state) => state.recipe);
   const { bookmarks } = useSelector((state) => state.bookmarks);
 
-  const [numOfGuests, setNumOfGuests] = useState(1);
-  const isAlreadyBookmarked = bookmarks.some(
-    (recipe) => recipe.id === currentRecipe.id,
-  );
-
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchRecipeById(id));
-    }
-  }, [id, dispatch]);
-
-  useEffect(() => {
-    if (currentRecipe && currentRecipe.servings) {
-      setNumOfGuests(currentRecipe.servings);
-    }
-  }, [currentRecipe]);
-
-  const handleAddBookmark = () => {
-    if (!isAlreadyBookmarked) {
-      dispatch(addBookmark({ currentRecipe }));
-    }
-  };
-
   const {
-    extendedIngredients: ingredients,
+    extendedIngredients: ingredients = [],
     image,
     sourceUrl,
     title,
@@ -63,7 +40,37 @@ function RecipeBox({ id }) {
     readyInMinutes: cookingTime,
     servings,
     instructions,
-  } = currentRecipe;
+  } = currentRecipe || {};
+
+  const handleAddBookmark = () => {
+    if (!isAlreadyBookmarked) {
+      dispatch(addBookmark({ currentRecipe }));
+    }
+  };
+
+  const handleRemoveBookmark = () => {
+    dispatch(removeBookmark(currentRecipe.id));
+  };
+
+  const [numOfGuests, setNumOfGuests] = useState(1);
+  const isAlreadyBookmarked = bookmarks.some(
+    (recipe) => recipe.id === currentRecipe.id,
+  );
+  const previousIdRef = useRef();
+
+  useEffect(() => {
+    if (id && id !== previousIdRef.current) {
+      // prevent duplicate API calls on first click on Sidebar or Bookmarks
+      dispatch(fetchRecipeById(id));
+      previousIdRef.current = id;
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    if (currentRecipe?.servings) {
+      setNumOfGuests(currentRecipe.servings);
+    }
+  }, [currentRecipe]);
 
   if (status === "loading")
     return (
@@ -83,20 +90,18 @@ function RecipeBox({ id }) {
   if (!currentRecipe) return <></>;
 
   return (
-    <div className="absolute flex h-full flex-col items-center gap-6 overflow-y-scroll rounded-md bg-primary-300 p-4 text-primary-900 sm:static sm:mx-8 sm:my-4 sm:p-8">
+    <div className="absolute flex h-full flex-col items-center gap-6 overflow-y-scroll rounded-md bg-primary-300 p-4 text-primary-900 md:static md:mx-8 md:my-4 md:p-8">
       <div className="flex items-center gap-6">
-        <button className="text-xl sm:hidden" onClick={moveBack}>
+        <button className="text-xl md:hidden" onClick={moveBack}>
           &larr;
         </button>
-        <a className="text-2xl sm:text-3xl" href={sourceUrl}>
+        <a className="text-2xl md:text-3xl" href={sourceUrl}>
           {title}
         </a>
         <button
           className="flex aspect-square w-10 items-center justify-center rounded-full border-[1px] border-primary-900 bg-primary-100 duration-200 hover:scale-125 hover:bg-primary-900 hover:text-primary-100 hover:shadow-sm"
           onClick={
-            isAlreadyBookmarked
-              ? () => dispatch(removeBookmark(currentRecipe.id))
-              : handleAddBookmark
+            isAlreadyBookmarked ? handleRemoveBookmark : handleAddBookmark
           }
         >
           {isAlreadyBookmarked ? (
@@ -106,7 +111,7 @@ function RecipeBox({ id }) {
           )}
         </button>
       </div>
-      <div className="flex min-h-max w-full flex-col gap-6 sm:grid sm:grid-cols-2">
+      <div className="flex min-h-max w-full flex-col gap-6 md:grid lg:grid-cols-2">
         <div className="h-auto">
           <picture className="h-[50vh] w-full">
             <img
@@ -117,7 +122,7 @@ function RecipeBox({ id }) {
             />
           </picture>
         </div>
-        <section className="flex flex-col justify-between gap-4 sm:gap-2">
+        <section className="flex flex-col justify-between gap-4 md:gap-2">
           <div className="rounded-md bg-primary-200 p-6">
             <h2 className="mb-2 text-2xl">Description:</h2>
             <p
@@ -127,27 +132,27 @@ function RecipeBox({ id }) {
           </div>
           <div className="flex flex-col items-center justify-between">
             {
-              <div className="flex h-min w-full items-end justify-around pb-2 text-xl sm:text-2xl">
+              <div className="flex h-min w-full items-end justify-around pb-2 text-xl md:text-2xl">
                 {vegan && (
-                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 sm:h-20">
+                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 md:h-20">
                     <LuVegan />
                     <p className="text-xs">Vegan</p>
                   </span>
                 )}
                 {vegetarian && (
-                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 sm:h-20">
+                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 md:h-20">
                     <PiPottedPlant />
                     <p className="text-xs">Vegetarian</p>
                   </span>
                 )}
                 {glutenFree && (
-                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 sm:h-20">
+                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 md:h-20">
                     <PiGrainsSlash />
                     <p className="text-xs">Gluten-free</p>
                   </span>
                 )}
                 {dairyFree && (
-                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 sm:h-20">
+                  <span className="flex aspect-square h-16 flex-col items-center justify-center rounded-full bg-primary-100 md:h-20">
                     <LuMilkOff />
                     <p className="text-xs">Dairy-free</p>
                   </span>
@@ -157,7 +162,7 @@ function RecipeBox({ id }) {
           </div>
         </section>
       </div>
-      <div className="flex w-full flex-col items-center justify-center gap-2 rounded-md bg-primary-200 px-2 py-4 sm:flex-row sm:justify-around">
+      <div className="flex w-full flex-col items-center justify-center gap-2 rounded-md bg-primary-200 px-2 py-4 md:flex-row md:justify-around">
         <div className="flex items-center gap-2">
           <BiSolidDish />
           <div className="flex items-center justify-center gap-2">
@@ -189,7 +194,7 @@ function RecipeBox({ id }) {
           <span>Cooking time: {cookingTime} min.</span>
         </div>
       </div>
-      <div className="flex h-auto w-full flex-col items-center justify-center gap-6 sm:grid sm:grid-cols-2">
+      <div className="flex h-auto w-full flex-col items-center justify-center gap-6 md:grid lg:grid-cols-2">
         <div className="h-full w-full rounded-md bg-primary-200 p-4 pl-6">
           <h2 className="mb-2 text-2xl">Ingredients:</h2>
           <ul className="text-md grid w-full list-disc">
@@ -223,7 +228,7 @@ function RecipeBox({ id }) {
           </ul>
         </div>
         <div className="h-full w-full rounded-md bg-primary-200 p-4">
-          <h2 className="mb-2 text-xl sm:text-2xl">Instructions:</h2>
+          <h2 className="mb-2 text-xl md:text-2xl">Instructions:</h2>
           {instructions ? (
             <p dangerouslySetInnerHTML={{ __html: instructions }}></p>
           ) : (

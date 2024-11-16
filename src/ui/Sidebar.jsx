@@ -29,7 +29,7 @@ function Sidebar() {
             <RecipePreview recipe={recipe} key={`preview-${recipe.id}`} />
           ))
         ) : (
-          <p>No recipes available</p>
+          <p className="pt-4 text-xl">No results available</p>
         )}
       </ul>
       {recipes.length > 0 && <NumResults />}

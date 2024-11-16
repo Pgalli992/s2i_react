@@ -22,7 +22,7 @@ function SearchBar({ placeholder = "" }) {
   }
 
   return (
-    <div className="col-span-3 row-start-2 flex w-full justify-center gap-4 sm:col-span-1 sm:col-start-2 sm:row-start-1 sm:gap-8">
+    <div className="col-span-3 row-start-2 flex w-full justify-center gap-4 md:col-span-1 md:col-start-2 md:row-start-1 md:gap-8">
       <form
         className="group relative flex h-full w-[90%] items-center justify-center gap-1 md:w-[70%]"
         onSubmit={handleSubmit}
@@ -30,7 +30,7 @@ function SearchBar({ placeholder = "" }) {
         <input
           type="text"
           placeholder={placeholder}
-          className="text-md relative w-full rounded-full bg-primary-400 px-[10%] text-primary-900 caret-primary-900 shadow-sm outline-none transition-all duration-300 placeholder:text-primary-700 focus:scale-105 focus:pl-6 focus:placeholder-transparent focus:shadow-md sm:h-10"
+          className="text-md relative w-full rounded-full bg-primary-400 px-[12%] text-primary-900 caret-primary-900 shadow-sm outline-none transition-all duration-300 placeholder:text-primary-700 focus:scale-105 focus:pl-6 focus:placeholder-transparent focus:shadow-md md:h-10"
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);

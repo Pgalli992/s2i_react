@@ -3,9 +3,9 @@ function Logo() {
   return (
     <a
       href="/"
-      className="max-w-fit cursor-pointer justify-self-start sm:col-span-1 sm:justify-self-start"
+      className="max-w-fit cursor-pointer justify-self-start md:col-span-1 md:justify-self-start"
     >
-      <img src={logo} className="aspect-square w-10 sm:w-12" />
+      <img src={logo} className="aspect-square w-10 md:w-12" />
     </a>
   );
 }
