@@ -18,6 +18,7 @@ import {
   removeBookmark,
 } from "../features/bookmarks/bookmarksSlice.js";
 import { useMoveBack } from "../hooks/useMoveBack.js";
+import Ingredient from "./Ingredient.jsx";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
@@ -199,29 +200,36 @@ function RecipeBox({ id }) {
           <h2 className="mb-2 text-2xl">Ingredients:</h2>
           <ul className="text-md grid w-full list-disc">
             {ingredients && ingredients.length > 0 ? (
-              ingredients.map((ingredient) => (
-                <li key={ingredient.id}>
-                  {ingredient.amount
-                    ? (() => {
-                        const totalAmount =
-                          (ingredient.amount / servings) * numOfGuests;
-                        const integerPart = Math.trunc(totalAmount); // Parte intera
-                        const decimalPart = totalAmount - integerPart; // Parte decimale
+              ingredients.map(
+                (ingredients) => (
+                  <Ingredient
+                    key={ingredients.id}
+                    ingredients={ingredients}
+                    servings={servings}
+                    numOfGuests={numOfGuests}
+                  />
+                ),
+                // <li key={ingredient.id}>
+                //   {ingredient.amount
+                //     ? (() => {
+                //         const totalAmount =
+                //           (ingredient.amount / servings) * numOfGuests;
+                //         const integerPart = Math.trunc(totalAmount);
+                //         const decimalPart = totalAmount - integerPart;
 
-                        // Converto la parte decimale in frazione se presente
-                        const fractionPart =
-                          decimalPart > 0
-                            ? new Fraction(decimalPart).toFraction(true)
-                            : "";
+                //         // Converto la parte decimale in frazione se presente
+                //         const fractionPart =
+                //           decimalPart > 0
+                //             ? new Fraction(decimalPart).toFraction(true)
+                //             : "";
 
-                        // Combinazione di parte intera, frazionaria e unità
-                        return `${integerPart > 0 ? integerPart : ""} ${fractionPart} ${
-                          ingredient.unit ? `${ingredient.unit} of` : ""
-                        } ${ingredient.name}`;
-                      })()
-                    : ingredient.name}
-                </li>
-              ))
+                //         return `${integerPart > 0 ? integerPart : ""} ${fractionPart} ${
+                //           ingredient.unit ? `${ingredient.unit} of` : ""
+                //         } ${ingredient.name}`;
+                //       })()
+                //     : ingredient.name}
+                // </li>
+              )
             ) : (
               <p>No ingredients</p>
             )}
