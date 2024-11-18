@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-
 import { LuMilkOff } from "react-icons/lu";
 import { PiGrainsSlash } from "react-icons/pi";
 import { LuVegan } from "react-icons/lu";
@@ -10,7 +9,6 @@ import { fetchRecipeById } from "../services/apiRecipes";
 import { BiSolidDish } from "react-icons/bi";
 import { RxLapTimer } from "react-icons/rx";
 import { ColorRing } from "react-loader-spinner";
-import Fraction from "fraction.js";
 import { HiOutlineBookmark } from "react-icons/hi2";
 import { HiBookmark } from "react-icons/hi2";
 import {
@@ -200,36 +198,14 @@ function RecipeBox({ id }) {
           <h2 className="mb-2 text-2xl">Ingredients:</h2>
           <ul className="text-md grid w-full list-disc">
             {ingredients && ingredients.length > 0 ? (
-              ingredients.map(
-                (ingredients) => (
-                  <Ingredient
-                    key={ingredients.id}
-                    ingredients={ingredients}
-                    servings={servings}
-                    numOfGuests={numOfGuests}
-                  />
-                ),
-                // <li key={ingredient.id}>
-                //   {ingredient.amount
-                //     ? (() => {
-                //         const totalAmount =
-                //           (ingredient.amount / servings) * numOfGuests;
-                //         const integerPart = Math.trunc(totalAmount);
-                //         const decimalPart = totalAmount - integerPart;
-
-                //         // Converto la parte decimale in frazione se presente
-                //         const fractionPart =
-                //           decimalPart > 0
-                //             ? new Fraction(decimalPart).toFraction(true)
-                //             : "";
-
-                //         return `${integerPart > 0 ? integerPart : ""} ${fractionPart} ${
-                //           ingredient.unit ? `${ingredient.unit} of` : ""
-                //         } ${ingredient.name}`;
-                //       })()
-                //     : ingredient.name}
-                // </li>
-              )
+              ingredients.map((ingredients) => (
+                <Ingredient
+                  key={ingredients.id}
+                  ingredients={ingredients}
+                  servings={servings}
+                  numOfGuests={numOfGuests}
+                />
+              ))
             ) : (
               <p>No ingredients</p>
             )}

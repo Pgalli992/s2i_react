@@ -14,8 +14,6 @@ function Error() {
         <p>{error.data || error.message}</p>
       </div>
       <Button text="Go Back" onClick={moveBack} />
-
-      {/* <LinkButton to="-1">&larr; Go back</LinkButton> */}
     </div>
   );
 }
