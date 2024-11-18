@@ -5,13 +5,13 @@ function Home() {
       <Logo />
       <div className="text-center">
         <h1 className="text-2xl font-bold text-primary-800 sm:text-3xl">
-          Scopri il potere del cibo salutare con ricette vegane nutrienti e
-          gustose
+          Unlock the power of healthy eating with nutritious and delicious vegan
+          recipes
         </h1>
         <h2 className="text-xl md:text-2xl">
-          Esplora e trova le migliori ricette vegane per un’alimentazione
-          equilibrata e deliziosa. Inizia la tua ricerca di piatti che fanno
-          bene al corpo e al pianeta!
+          Explore and discover the best plant-based dishes for a balanced and
+          flavorful diet. Start your journey toward meals that are good for both
+          your body and the planet!
         </h2>
       </div>
       <div className="mt-6"></div>
