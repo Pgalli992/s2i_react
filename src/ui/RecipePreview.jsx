@@ -1,12 +1,18 @@
 import { useNavigate } from "react-router";
-import { handleImgError } from "../utils/helpers";
+import { handleImgError, isRecipeBookmarked } from "../utils/helpers";
 import Button from "./Button";
+import ToggleBookmark from "./ToggleBookmark";
+import { HiBookmark } from "react-icons/hi2";
+import { useSelector } from "react-redux";
 function RecipePreview({
   recipe,
   callbackFunction = null,
   showDeleteButton = false,
+  showBookmarkicon = false,
 }) {
   const { title, image, id } = recipe;
+  const bookmarks = useSelector((state) => state.bookmarks.bookmarks || []);
+  const isAlreadyBookmarked = isRecipeBookmarked({ bookmarks, recipe });
   const navigate = useNavigate();
 
   function loadRecipeDetails(id) {
@@ -40,6 +46,9 @@ function RecipePreview({
             }}
           />
         </div>
+      )}
+      {showBookmarkicon && isAlreadyBookmarked && (
+        <HiBookmark className="text-2xl" />
       )}
     </li>
   );

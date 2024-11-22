@@ -13,13 +13,13 @@ export const bookmarksSlice = createSlice({
   initialState,
   reducers: {
     addBookmark: (state, action) => {
-      const { currentRecipe } = action.payload;
+      const recipe = action.payload;
       const isAlreadyBookmarked = state.bookmarks.some(
-        (recipe) => recipe.id === currentRecipe.id,
+        (item) => item.id === recipe.id,
       );
 
       if (!isAlreadyBookmarked) {
-        state.bookmarks.push(currentRecipe);
+        state.bookmarks.push(recipe);
       }
     },
     removeBookmark: (state, action) => {

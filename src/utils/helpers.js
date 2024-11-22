@@ -23,3 +23,6 @@ export const formatIngredient = function (
     unit ? `${unit} of` : ""
   } ${name}`;
 };
+
+export const isRecipeBookmarked = ({ bookmarks, recipe }) =>
+  bookmarks?.some((item) => item.id === recipe.id);

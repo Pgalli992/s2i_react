@@ -9,14 +9,9 @@ import { fetchRecipeById } from "../services/apiRecipes";
 import { BiSolidDish } from "react-icons/bi";
 import { RxLapTimer } from "react-icons/rx";
 import { ColorRing } from "react-loader-spinner";
-import { HiOutlineBookmark } from "react-icons/hi2";
-import { HiBookmark } from "react-icons/hi2";
-import {
-  addBookmark,
-  removeBookmark,
-} from "../features/bookmarks/bookmarksSlice.js";
 import { useMoveBack } from "../hooks/useMoveBack.js";
 import Ingredient from "./Ingredient.jsx";
+import ToggleBookmark from "./ToggleBookmark.jsx";
 
 function RecipeBox({ id }) {
   const dispatch = useDispatch();
@@ -24,7 +19,8 @@ function RecipeBox({ id }) {
   const moveBack = useMoveBack();
 
   const { currentRecipe, status } = useSelector((state) => state.recipe);
-  const { bookmarks } = useSelector((state) => state.bookmarks);
+  const bookmarks = useSelector((state) => state.bookmarks.bookmarks || []);
+  // const isAlreadyBookmarked = isRecipeBookmarked(bookmarks, currentRecipe);
 
   const {
     extendedIngredients: ingredients = [],
@@ -41,20 +37,7 @@ function RecipeBox({ id }) {
     instructions,
   } = currentRecipe || {};
 
-  const handleAddBookmark = () => {
-    if (!isAlreadyBookmarked) {
-      dispatch(addBookmark({ currentRecipe }));
-    }
-  };
-
-  const handleRemoveBookmark = () => {
-    dispatch(removeBookmark(currentRecipe.id));
-  };
-
   const [numOfGuests, setNumOfGuests] = useState(1);
-  const isAlreadyBookmarked = bookmarks.some(
-    (recipe) => recipe.id === currentRecipe.id,
-  );
   const previousIdRef = useRef();
 
   useEffect(() => {
@@ -97,18 +80,7 @@ function RecipeBox({ id }) {
         <a className="text-2xl md:text-3xl" href={sourceUrl}>
           {title}
         </a>
-        <button
-          className="flex aspect-square w-10 items-center justify-center rounded-full border-[1px] border-primary-900 bg-primary-100 duration-200 hover:scale-125 hover:bg-primary-900 hover:text-primary-100 hover:shadow-sm"
-          onClick={
-            isAlreadyBookmarked ? handleRemoveBookmark : handleAddBookmark
-          }
-        >
-          {isAlreadyBookmarked ? (
-            <HiBookmark className="text-2xl" />
-          ) : (
-            <HiOutlineBookmark className="text-2xl" />
-          )}
-        </button>
+        <ToggleBookmark bookmarks={bookmarks} recipe={currentRecipe} />
       </div>
       <div className="flex min-h-max w-full flex-col gap-6 md:grid lg:grid-cols-2">
         <div className="h-auto">

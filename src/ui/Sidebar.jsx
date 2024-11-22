@@ -26,7 +26,11 @@ function Sidebar() {
       <ul className="flex h-full w-full flex-col items-center gap-2 pb-20">
         {recipes && recipes.length > 0 ? (
           recipes.map((recipe) => (
-            <RecipePreview recipe={recipe} key={`preview-${recipe.id}`} />
+            <RecipePreview
+              recipe={recipe}
+              key={`preview-${recipe.id}`}
+              showBookmarkicon={true}
+            />
           ))
         ) : (
           <p className="pt-4 text-xl">No results available</p>
