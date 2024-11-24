@@ -13,5 +13,7 @@ Vegan Habits è la piattaforma ideale per chi desidera esplorare il mondo della 
 - Adatta le porzioni: modifica il numero di porzioni e ottieni automaticamente le quantità esatte degli ingredienti.
 - Salva le tue preferite: aggiungi le ricette che ami ai tuoi Bookmarks per ritrovarle facilmente in ogni momento.
 
+Provalo qui: [Vegan Habits](https://pg-veganrecipes.netlify.app/)
+
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
