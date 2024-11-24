@@ -1,4 +1,6 @@
-  <img src="https://github.com/Pgalli992/s21_react/blob/main/src/assets/icons/logo.png" align="justify" align="center"/>
+<div align="center">
+  <img src="https://github.com/Pgalli992/s21_react/blob/main/src/assets/icons/logo.png" align="justify"/>
+</div>
 <h1 align="center">
   Vegan Habits
 </h1>
