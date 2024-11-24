@@ -1,5 +1,5 @@
-<h1 align="center">
   ![Vegan Habits Logo]("https://github.com/Pgalli992/s21_react/blob/main/src/assets/icons/logo.png")
+<h1 align="center">
   Vegan Habits
 </h1>
 
