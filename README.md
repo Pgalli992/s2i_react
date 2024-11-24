@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://github.com/Pgalli992/s21_react/blob/main/src/assets/icons/logo.png" />
+  <img src="https://github.com/Pgalli992/s21_react/blob/main/src/assets/icons/logo.png" justify="center"/>
   Vegan Habits
 </h1>
 
