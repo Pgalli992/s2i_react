@@ -15,5 +15,51 @@ Vegan Habits è la piattaforma ideale per chi desidera esplorare il mondo della 
 
 Provalo qui: [Vegan Habits](https://pg-veganrecipes.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Getting Started
+
+### Installazione
+
+1. Clona jsAdvanced_s2i_project repository:
+
+```sh
+git clone https://github.com/Pgalli992/jsAdvanced_s2i_project.git
+```
+
+2. Cambia la directory del progetto:
+
+```sh
+cd desktop
+```
+
+3. Una volta clonata la repository in locale installa le dependencies:
+
+```sh
+npm install
+```
+
+### Comandi utili
+
+Utilizzare Tailwind per compilare il file output.css
+
+```sh
+npm run dev
+```
+
+Creare la cartella dist in modalità _dev_
+
+```sh
+npm run build:dev
+```
+
+Creare la cartella dist in modalità _production_
+
+```sh
+npm run build:prod
+```
+
+Far girare il progetto dalla cartella dist in locale
+
+```sh
+npm run serve
+```
