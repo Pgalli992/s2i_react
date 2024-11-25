@@ -15,6 +15,9 @@ Vegan Habits è la piattaforma ideale per chi desidera esplorare il mondo della 
 
 Provalo qui: [Vegan Habits](https://pg-veganrecipes.netlify.app/)
 
+## Servizi esterni:
+Questo progetto utilizza l'API di Spoonacular, un servizio che fornisce informazioni su ricette, ingredienti e piani alimentari, per offrire dati accurati e dettagliati direttamente nell'applicazione.
+
 
 ## Getting Started
 
