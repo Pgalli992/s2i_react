@@ -42,7 +42,7 @@ function Bookmarks() {
       {isOpen && (
         <div
           ref={ref}
-          className="absolute right-2 top-20 flex max-h-[70vh] w-[95%] items-center overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-primary-700 bg-primary-100 py-4 pr-2 text-start shadow-2xl md:right-6 md:w-1/4"
+          className="absolute right-2 top-20 flex max-h-[70vh] w-[95%] items-start overflow-y-auto overflow-x-hidden rounded-3xl border-2 border-primary-700 bg-primary-100 py-4 pr-2 text-start shadow-2xl md:right-6 md:w-1/4"
         >
           <ul className="flex w-full flex-col items-center">
             {bookmarks && bookmarks.length > 0 ? (
