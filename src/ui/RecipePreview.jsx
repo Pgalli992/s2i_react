@@ -48,7 +48,9 @@ function RecipePreview({
         </div>
       )}
       {showBookmarkicon && isAlreadyBookmarked && (
-        <HiBookmark className="text-2xl" />
+        <div className="h-auto min-w-8">
+          <HiBookmark className="w-full text-2xl" />
+        </div>
       )}
     </li>
   );

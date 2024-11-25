@@ -16,17 +16,6 @@ function ToggleBookmark({ bookmarks, recipe }) {
       : dispatch(addBookmark(recipe));
   };
 
-  // const handleAddBookmark = () => {
-  //   if (!isAlreadyBookmarked) {
-  //     dispatch(addBookmark({ recipe }));
-  //   }
-  // };
-
-  // const handleRemoveBookmark = () => {
-  //   dispatch(removeBookmark(recipe.id));
-  // };
-  console.log(isAlreadyBookmarked);
-
   return (
     <button
       className="flex aspect-square w-10 items-center justify-center rounded-full border-[1px] border-primary-900 bg-primary-100 duration-200 hover:scale-125 hover:bg-primary-900 hover:text-primary-100 hover:shadow-sm"

@@ -2,10 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const API_URL = "https://api.spoonacular.com/recipes/";
 const dietType = "vegan";
-const numOfResults = 100;
+const numOfResults = 30;
 const sortDirection = "desc";
 
-const TIME_OUT = 1000;
+const TIME_OUT = 15000;
 
 async function fetchWithTimeout(url) {
   const timeout = new Promise((_, reject) =>
