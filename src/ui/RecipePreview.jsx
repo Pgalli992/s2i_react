@@ -8,6 +8,7 @@ function RecipePreview({
   callbackFunction = null,
   showDeleteButton = false,
   showBookmarkicon = false,
+  setIsOpen,
 }) {
   const { title, image, id } = recipe;
   const bookmarks = useSelector((state) => state.bookmarks.bookmarks || []);
@@ -24,6 +25,7 @@ function RecipePreview({
       onClick={(e) => {
         e.preventDefault();
         loadRecipeDetails(id);
+        setIsOpen(false);
       }}
     >
       <div className="flex items-center gap-4">

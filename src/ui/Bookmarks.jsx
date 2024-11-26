@@ -49,6 +49,8 @@ function Bookmarks() {
               bookmarks.map((recipe) => (
                 <RecipePreview
                   recipe={recipe}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
                   key={`preview-${recipe.id}`}
                   showDeleteButton={true}
                   callbackFunction={() => {
