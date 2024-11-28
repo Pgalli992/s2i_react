@@ -40,7 +40,7 @@ function SearchBar({ placeholder = "" }) {
           <HiMagnifyingGlass />
         </button>
       </form>
-      {recipes.length <= totalResults && (
+      {recipes.length < totalResults && (
         <Button
           text="Load more..."
           fontSizeInPixels="3"
