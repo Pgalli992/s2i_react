@@ -12,9 +12,12 @@ import { ColorRing } from "react-loader-spinner";
 import { useMoveBack } from "../hooks/useMoveBack.js";
 import Ingredient from "./Ingredient.jsx";
 import ToggleBookmark from "./ToggleBookmark.jsx";
+import { useNavigate } from "react-router";
+import Error from "../pages/Error.jsx";
 
 function RecipeBox({ id }) {
   const [numOfGuests, setNumOfGuests] = useState(1);
+  const navigate = useNavigate();
 
   const { currentRecipe, status } = useSelector((state) => state.recipe);
   const bookmarks = useSelector((state) => state.bookmarks.bookmarks || []);
@@ -66,7 +69,7 @@ function RecipeBox({ id }) {
       </div>
     );
 
-  if (!currentRecipe) return <></>;
+  if (status === "error") return <Error />;
 
   return (
     <div className="absolute flex h-full flex-col items-center gap-6 overflow-y-scroll rounded-md bg-primary-300 p-4 text-primary-900 md:static md:mx-8 md:my-4 md:p-8">
