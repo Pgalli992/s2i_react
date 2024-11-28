@@ -3,15 +3,15 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { fetchRecipesByQuery } from "../services/apiRecipes";
-import Button from "./Button";
 import { clearRecipes } from "../features/search/searchSlice";
+import Button from "./Button";
 // eslint-disable-next-line react/prop-types
 function SearchBar({ placeholder = "" }) {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
 
-  const { recipes } = useSelector((state) => state.search);
+  const { recipes, totalResults } = useSelector((state) => state.search);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -40,7 +40,7 @@ function SearchBar({ placeholder = "" }) {
           <HiMagnifyingGlass />
         </button>
       </form>
-      {recipes.length >= 30 && (
+      {recipes.length >= 30 && recipes.length != totalResults && (
         <Button
           text="Load more..."
           fontSizeInPixels="3"

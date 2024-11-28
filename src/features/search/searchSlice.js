@@ -5,6 +5,7 @@ const initialState = {
   status: "idle",
   recipes: [],
   currentRecipe: {},
+  totalResults: 0,
   error: "",
 };
 
@@ -24,6 +25,8 @@ export const searchSlice = createSlice({
       .addCase(fetchRecipesByQuery.fulfilled, (state, action) => {
         state.recipes = [...state.recipes, ...action.payload.results];
         state.status = "idle";
+        state.totalResults = action.payload.totalResults;
+        console.log(state.totalResults);
       })
       .addCase(fetchRecipesByQuery.rejected, (state, action) => {
         state.status = "error";

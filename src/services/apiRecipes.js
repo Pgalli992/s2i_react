@@ -19,6 +19,7 @@ async function fetchWithTimeout(url) {
   if (!res.ok) throw new Error("Impossible to fetch data");
 
   const data = await res.json();
+  console.log(data);
   return data;
 }
 

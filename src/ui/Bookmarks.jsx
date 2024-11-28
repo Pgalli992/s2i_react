@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import Badge from "./Badge";
 import { HiOutlineBookmark } from "react-icons/hi2";
 import { useDispatch, useSelector } from "react-redux";
-import RecipePreview from "./RecipePreview";
 import { removeBookmark } from "../features/bookmarks/bookmarksSlice";
+import Badge from "./Badge";
+import RecipePreview from "./RecipePreview";
 
 function Bookmarks() {
   const [isOpen, setIsOpen] = useState(false);

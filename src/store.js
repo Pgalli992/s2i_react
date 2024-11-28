@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
 import searchReducer from "./features/search/searchSlice";
 import recipeReducer from "./features/recipes/recipeSlice";
 import bookmarksSlice from "./features/bookmarks/bookmarksSlice";
 import storage from "redux-persist/lib/storage";
-import { persistReducer, persistStore } from "redux-persist";
 
 const bookmarksPersistConfig = { key: "bookmarks", storage };
 

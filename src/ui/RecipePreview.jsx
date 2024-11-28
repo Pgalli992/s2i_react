@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
 import { handleImgError, isRecipeBookmarked } from "../utils/helpers";
-import Button from "./Button";
 import { HiBookmark } from "react-icons/hi2";
 import { useSelector } from "react-redux";
+import Button from "./Button";
 function RecipePreview({
   recipe,
   callbackFunction = null,

@@ -14,14 +14,10 @@ import Ingredient from "./Ingredient.jsx";
 import ToggleBookmark from "./ToggleBookmark.jsx";
 
 function RecipeBox({ id }) {
-  const dispatch = useDispatch();
-
-  const moveBack = useMoveBack();
+  const [numOfGuests, setNumOfGuests] = useState(1);
 
   const { currentRecipe, status } = useSelector((state) => state.recipe);
   const bookmarks = useSelector((state) => state.bookmarks.bookmarks || []);
-  // const isAlreadyBookmarked = isRecipeBookmarked(bookmarks, currentRecipe);
-
   const {
     extendedIngredients: ingredients = [],
     image,
@@ -37,7 +33,8 @@ function RecipeBox({ id }) {
     instructions,
   } = currentRecipe || {};
 
-  const [numOfGuests, setNumOfGuests] = useState(1);
+  const dispatch = useDispatch();
+  const moveBack = useMoveBack();
   const previousIdRef = useRef();
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
+import { ColorRing } from "react-loader-spinner";
 import NumResults from "./NumResults";
 import RecipePreview from "./RecipePreview";
-import { ColorRing } from "react-loader-spinner";
 
 function Sidebar() {
   const { recipes, status } = useSelector((state) => state.search);
