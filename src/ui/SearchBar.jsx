@@ -22,7 +22,7 @@ function SearchBar({ placeholder = "" }) {
   }
 
   return (
-    <div className="col-span-3 row-start-2 flex w-full justify-center gap-4 md:col-span-1 md:col-start-2 md:row-start-1 md:gap-8">
+    <div className="col-span-3 row-start-2 flex w-full items-center justify-center gap-4 md:col-span-1 md:col-start-2 md:row-start-1 md:gap-8">
       <form
         className="group relative flex h-full w-[90%] items-center justify-center gap-1 md:w-[70%]"
         onSubmit={handleSubmit}
@@ -40,7 +40,7 @@ function SearchBar({ placeholder = "" }) {
           <HiMagnifyingGlass />
         </button>
       </form>
-      {recipes.length >= 30 && recipes.length != totalResults && (
+      {recipes.length <= totalResults && (
         <Button
           text="Load more..."
           fontSizeInPixels="3"
