@@ -15,6 +15,7 @@ function RecipePreview({
   const isAlreadyBookmarked = isRecipeBookmarked({ bookmarks, recipe });
   const navigate = useNavigate();
 
+  // exporting the id to URL
   function loadRecipeDetails(id) {
     navigate(`/search_recipes/${id}`);
   }

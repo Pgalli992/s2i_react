@@ -7,6 +7,7 @@ const sortDirection = "desc";
 
 const TIME_OUT = 15000;
 
+// Adding timeout to fetch function
 async function fetchWithTimeout(url) {
   const timeout = new Promise((_, reject) =>
     setTimeout(() => reject(new Error("Request timed out")), TIME_OUT),
@@ -23,6 +24,7 @@ async function fetchWithTimeout(url) {
   return data;
 }
 
+// function to fetch data by query
 export const fetchRecipesByQuery = createAsyncThunk(
   "recipes/fetchRecipesByQuery",
   async function ({ searchQuery, resultsAlreadyFetched = 0 }) {
@@ -36,6 +38,7 @@ export const fetchRecipesByQuery = createAsyncThunk(
   },
 );
 
+// function to fetch data by id
 export const fetchRecipeById = createAsyncThunk(
   "recipes/fetchRecipeById",
   async function (id) {

@@ -48,6 +48,7 @@ function RecipeBox({ id }) {
     }
   }, [id, dispatch]);
 
+  // setting number of servings as recived from api
   useEffect(() => {
     if (currentRecipe?.servings) {
       setNumOfGuests(currentRecipe.servings);
