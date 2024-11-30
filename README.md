@@ -47,6 +47,7 @@ npm install
 ```sh
 VITE_API_KEYS = *Le tue chiavi Spoonacular*
 ```
+Per ottenerle visita il sito [Spoonacular](https://spoonacular.com/food-api/console#Dashboard)
 
 ### Comandi utili
 
