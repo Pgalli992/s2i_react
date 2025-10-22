@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Pgalli992/s21_react/blob/main/src/assets/icons/logo.png" align="justify"/>
+  <img src="[https://github.com/Pgalli992/s21_react/blob/main/src/assets/icons/logo.png](https://github.com/Pgalli992/Co2_tracker_react_s2i/blob/main/src/assets/molecola.png)" align="justify"/>
 </div>
 <h1 align="center">
   Vegan Habits
